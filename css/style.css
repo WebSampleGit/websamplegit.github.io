@@ -1,0 +1,324 @@
+
+    :root {
+      --bg1: #f5fdf8;
+      --bg2: #d4f0dd;
+      --text: #1f2d1f;
+      --accent: #3a7f5a;
+      --btn1: #2e6f4e;
+      --btn2: #6fd6a0;
+    }
+
+        /* Barra de rolagem para navegadores WebKit (Chrome, Edge, Safari) */
+    ::-webkit-scrollbar {
+        width: 10px;
+        height: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+    background: #e6f5ec00; /* tom claro de verde */
+    border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #3a7f5a, #6fd6a0); /* verde escuro para claro */
+    border-radius: 10px;
+    border: 2px solid #e6f5ec00;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #2e6f4e, #5fcf90);
+    }
+
+    /* Para Firefox */
+    html {
+    scrollbar-width: thin;
+    scrollbar-color: #6fd6a0 #e6f5ec;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Poppins';
+      background: linear-gradient(180deg, var(--bg1), var(--bg2));
+      color: var(--text);
+      text-align: center;
+      line-height: 1.6;
+    }
+
+    header {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0px 10px 20px 10px;
+    }
+
+    /* header h1 {
+      font-size: 2.6rem;
+      font-weight: 800;
+      margin-bottom: 20px;
+      color: var(--accent);
+    } */
+
+    header p {
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 0 auto 30px;
+      font-weight: 300;
+    }
+
+    .hero-image {
+      max-width: 680px;
+      margin: 0 auto 30px;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
+
+    .hero-image img {
+      width: 100%;
+      display: block;
+    }
+
+    .cta-btn {
+      display: inline-block;
+      background: linear-gradient(90deg, var(--btn1), var(--btn2));
+      padding: 14px 26px;
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      border-radius: 8px;
+      transition: all 0.2s ease;
+    }
+
+    .cta-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+    }
+
+    .oferta {
+        background: #ffffff;
+        border-radius: 12px;
+        max-width: 800px;
+        margin: 20px;
+        padding: 20px 20px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    }
+
+    .oferta h2 {
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+      color: var(--accent);
+    }
+
+    .oferta p {
+      font-size: 1rem;
+      margin-bottom: 20px;
+      font-weight: 300;
+    }
+
+    .preco {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--btn1);
+      margin: 10px 0;
+    }
+
+    .avista {
+      font-size: 0.95rem;
+      color: #555;
+      margin-bottom: 20px;
+    }
+
+    section {
+      max-width: 850px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    section h2 {
+      font-size: 1.6rem;
+      margin-bottom: 15px;
+      color: var(--accent);
+    }
+    
+    section ul {
+      list-style: none;
+      padding: 0;
+      text-align: left;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    section li {
+      margin-bottom: 12px;
+      font-size: 1rem;
+      position: relative;
+      padding-left: 24px;
+      font-weight: 300;
+    }
+
+    section li::before {
+      content: "✔";
+      position: absolute;
+      left: 0;
+      color: var(--btn1);
+      font-weight: bold;
+    }
+
+    .depoimentos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 20px;
+      justify-items: center;
+      margin-top: 30px;
+    }
+
+    .depoimentos-grid img {
+    width: 100%;
+    max-width: 240px;
+    height: 360px; /* altura fixa */
+    object-fit: cover;
+    border-radius: 5px;
+    box-shadow: 0 4px 12px rgba(0, 39, 5, 0.5);
+    }
+
+    footer {
+      font-size: 0.8rem;
+      color: #ffffffcc;
+      padding: 5px 0;
+    }
+
+    .rodape{
+        background-color: var(--btn1);
+    }
+
+
+    @media (max-width: 600px) {
+      header h1 { font-size: 2rem; }
+      .preco { font-size: 1.6rem; }
+    }
+
+    .typing-container {
+    margin-top: 40px;
+    text-align: center;
+    }
+
+    #typing-title {
+    font-size: 4em;
+    font-weight: 800;
+    color: var(--accent);
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 3px solid var(--accent);
+    margin: 0 auto 20px;
+    max-width: 22ch;
+    animation: typing 3s steps(22, end) forwards, blink 0.7s step-end infinite;
+    }
+
+    .fade-up {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        will-change: opacity, transform;
+    }
+
+
+    .fade-up.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    @keyframes typing {
+        from { max-width: 0 }
+        to { max-width: 22ch }
+    }
+
+    @keyframes blink {
+    50% { border-color: transparent }
+    }
+
+    .no-cursor {
+        border-right: none !important;
+        animation: none !important;
+    }
+
+    .margin-bottom{
+        margin-bottom: 5%;
+    }
+
+    .faq-section {
+    padding: 20px;
+    background: #f5fdf8;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+
+    .faq-section h2 {
+    font-size: 1.8rem;
+    color: var(--accent);
+    margin-bottom: 20px;
+    text-align: center;
+    }
+
+    .faq-container {
+    width: 100%;
+    }
+
+    .faq-item {
+    margin-bottom: 12px;
+    border-bottom: 1px solid #d4f0dd;
+    }
+
+    .faq-question {
+    width: 100%;
+    background: none;
+    border: none;
+    text-align: left;
+    font-size: 1.1rem;
+    font-weight: 600;
+    padding: 12px;
+    color: var(--btn1);
+    cursor: pointer;
+    transition: background 0.3s ease;
+    }
+
+    .faq-question:hover {
+    background: #e6f5ec;
+    }
+
+    .faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+    padding: 0 12px;
+    }
+
+    .faq-answer p {
+    font-size: 1rem;
+    color: #333;
+    padding: 10px 0;
+    text-align: left;
+    font-weight: 300;
+    }
+
+    /* Estilo para "Mounjaro de Pobre" */
+    #typing-title {
+    font-size: clamp(2rem, 5vw, 3rem); /* adapta entre 1.8rem e 3rem conforme a tela */
+    font-weight: 800;
+    color: var(--accent);
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 3px solid var(--accent);
+    margin: 0 auto 20px;
+    max-width: 100%;
+    animation: typing 3s steps(22, end) forwards, blink 0.7s step-end infinite;
+    }
+
+    /* Estilo para "Método Natural Slim 💚" */
+    header h1 {
+    font-size: clamp(1.2rem, 1.5em, 2rem); 
+    font-weight: 800;
+    color: var(--accent);
+    margin-bottom: 20px;
+    text-align: center;
+    }
+

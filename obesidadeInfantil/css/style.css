@@ -1,0 +1,197 @@
+
+    :root {
+      --bg1: #f5fdf8;
+      --bg2: #d4f0dd;
+      --text: #1f2d1f;
+      --accent: #3a7f5a;
+      --btn1: #2e6f4e;
+      --btn2: #6fd6a0;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(180deg, var(--bg1), var(--bg2));
+      color: var(--text);
+      text-align: center;
+      line-height: 1.6;
+    }
+
+    header {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    header p {
+      font-size: 1.1rem;
+      max-width: 700px;
+      margin: 10px auto 30px;
+      font-weight: 300;
+    }
+
+    .hero-image {
+      max-width: 720px;
+      margin: 0 auto 30px;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
+
+    .hero-image img {
+      width: 100%;
+      display: block;
+    }
+
+    .cta-btn {
+      display: inline-block;
+      background: linear-gradient(90deg, var(--btn1), var(--btn2));
+      padding: 14px 26px;
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      border-radius: 8px;
+      transition: all 0.2s ease;
+    }
+
+    .cta-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+    }
+
+    section {
+      max-width: 850px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    section h2 {
+      font-size: 1.7rem;
+      margin-bottom: 15px;
+      color: var(--accent);
+    }
+
+    section ul {
+      list-style: none;
+      text-align: left;
+      max-width: 650px;
+      margin: 0 auto;
+      padding: 0;
+    }
+
+    section li {
+      margin-bottom: 12px;
+      position: relative;
+      padding-left: 25px;
+      font-weight: 300;
+    }
+
+    section li::before {
+      content: "✔";
+      position: absolute;
+      left: 0;
+      color: var(--btn1);
+      font-weight: 600;
+    }
+
+    .typing-container {
+      margin-top: 40px;
+    }
+
+    #typing-title {
+      font-size: clamp(1.2rem, 2vw, 3rem);
+      font-weight: 800;
+      color: var(--accent);
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: 3px solid var(--accent);
+      margin: 0 auto 20px;
+      max-width: 100%;
+      animation: typing 3s steps(22, end) forwards, blink 0.7s step-end infinite;
+    }
+
+    @keyframes typing { from { max-width: 0 } to { max-width: 22ch } }
+    @keyframes blink { 50% { border-color: transparent } }
+    .no-cursor { border-right: none !important; animation: none !important; }
+
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .oferta {
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 25px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+      margin-top: 20px;
+    }
+
+    .oferta h2 {
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+
+    .preco {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--btn1);
+      margin: 15px 0;
+    }
+
+    .faq-section {
+      padding: 20px;
+      background: #f5fdf8;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+
+    .faq-item {
+      margin-bottom: 12px;
+      border-bottom: 1px solid #d4f0dd;
+    }
+
+    .faq-question {
+      width: 100%;
+      background: none;
+      border: none;
+      text-align: left;
+      font-size: 1.1rem;
+      font-weight: 600;
+      padding: 12px;
+      color: var(--btn1);
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .faq-question:hover { background: #e6f5ec; }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease;
+      padding: 0 12px;
+    }
+
+    .faq-answer p {
+      font-size: 1rem;
+      color: #333;
+      padding: 10px 0;
+      text-align: left;
+      font-weight: 300;
+    }
+
+    footer {
+      background-color: var(--btn1);
+      color: #ffffffcc;
+      padding: 10px;
+      font-size: 0.9rem;
+      margin-top: 3%;
+    }
