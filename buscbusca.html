@@ -1,0 +1,212 @@
+<html>
+<head>
+	<!-- Icon nav bar -->
+	<link rel="shortcut icon" href="" type="image/x-icon">
+
+	<title>Busca busca</title>
+
+  <link rel="stylesheet" href="./style/style.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/@mapbox/polyline"></script>
+</head>
+<body>
+
+	<form id="form" method="post" autocomplete="off">
+		<div class="container">
+
+			<div class="mt-2" id="msg_retorno_ctn">
+
+				<h1 class="mb-4"><img id="logo" src="./css/img/logo.png" /></h1>
+
+				<div class="col-md-12 col-lg-12" id="msg_retorno">
+					<div id="msg_exibicao"></div>
+				</div>
+
+			</div>
+
+			<!-- Dados do destinho -->
+			<div id="" class="row mb-4">
+
+				<div class="titleService">
+					<h2 class="mb-2">Busca busca Entregas</h2>
+					<a class="itemBack" href="./index.html">
+						<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-arrow-left-circle" viewBox="0 0 16 16">
+							<path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z" />
+						</svg>
+					</a>
+				</div>
+
+				<div class="col-md-4 mt-1">
+					<div class="form-group">
+						<label>Origem</label>
+						<input type="text" class="form-control" value="São Paulo" disabled>
+					</div>
+				</div>
+
+                <div class="col-md-4 mt-1">
+					<div class="form-group">
+						<label>Destino <label class="obrigatorio">*</label></label>
+						<input id="cep_dest_buscabusca" type="text" class="form-control" placeholder="Cep. Ex: 08057-220" maxlength="8" onkeypress="apenasNumeros(event)" onchange="mascaraCEP()">
+					</div>
+				</div>
+
+				<div class="col-md-4 mt-1">
+					<div class="form-group">
+						<label for="TipoCarga">Categoria da Carga <label class="obrigatorio">*</label></label>
+						<select required="required" id="BuscaBuscaTipoCarga" class="form-control" name="TipoCarga">
+							<option value="Moto Elétrica" selected>Moto Elétrica</option>
+						</select>
+					</div>
+				</div>
+
+			</div>
+
+            <div id="endereco_log_buscabusca" class="row mb-4" hidden>
+				<div class="col-md-6 mt-1">
+					<div class="form-group">
+						<label>Endereço (destino)</label>
+						<input type="text" class="form-control" disabled id="end_entrega_buscabusca">
+					</div>
+				</div>
+                <div class="col-md-3 mt-1">
+					<div class="form-group">
+						<label>Bairro</label>
+						<input type="text" class="form-control" disabled id="bairro_entrega_buscabusca">
+					</div>
+				</div>
+                <div class="col-md-3 mt-1">
+					<div class="form-group">
+						<label>Numero <label class="obrigatorio">*</label></label>
+						<input type="text" class="form-control" id="num_entrega_buscabusca">
+					</div>
+				</div>
+			</div>
+
+			<!-- Dados da Carga -->
+			<div id="" class="row mb-4">
+
+				<h4 class="mb-2">Dados da carga</h4>
+
+				<div class="col-md-6">
+					<div class="form-group">
+						<label for="Peso">Nome completo <label class="obrigatorio">*</label></label>
+						<input required="required" type="text" class="form-control" id="fullNameBuscaBusca" placeholder="Ex: João Pedro da Silva" maxlength="50">
+					</div>
+				</div>
+
+                <div class="col-md-2">
+					<div class="form-group">
+						<label for="Peso">Peso <label class="obrigatorio">opcional</label></label>
+						<input required="required" type="text" class="form-control" id="peso_carga_busca_busca" placeholder="Ex: 50" maxlength="10" onkeypress="apenasNumeros(event)">
+					</div>
+				</div>
+
+				<div class="col-md-2">
+					<div class="form-group">
+						<label for="Peso">N° Telefone <label class="obrigatorio">opcional</label></label>
+						<input required="required" type="text" class="form-control" id="peso_carga_busca_busca"  placeholder="Ex: 11 95050 6012" maxlength="10" onkeypress="apenasNumeros(event)">
+					</div>
+				</div>
+
+				<div class="col-md-2">
+					<div class="form-group">
+						<label>Prazo de coleta</label>
+						<input type="text" class="form-control" value="24 Horas" disabled>
+					</div>
+				</div>
+
+			</div>
+
+
+            <!-- Confirm-->
+            <div class="mt-4">
+                <div class="col-md-12 col-lg-12">
+                    <div class="form-group d-flex justify-content-between">
+                        <button type="button" id="Continuar" class="btn btn-primary" onclick="openModal();">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-currency-dollar" viewBox="0 0 16 16">
+                                <path d="M4 10.781c.148 1.667 1.513 2.85 3.591 3.003V15h1.043v-1.216c2.27-.179 3.678-1.438 3.678-3.3 0-1.59-.947-2.51-2.956-3.028l-.722-.187V3.467c1.122.11 1.879.714 2.07 1.616h1.47c-.166-1.6-1.54-2.748-3.54-2.875V1H7.591v1.233c-1.939.23-3.27 1.472-3.27 3.156 0 1.454.966 2.483 2.661 2.917l.61.162v4.031c-1.149-.17-1.94-.8-2.131-1.718zm3.391-3.836c-1.043-.263-1.6-.825-1.6-1.616 0-.944.704-1.641 1.8-1.828v3.495l-.2-.05zm1.591 1.872c1.287.323 1.852.859 1.852 1.769 0 1.097-.826 1.828-2.2 1.939V8.73z" />
+                            </svg>&nbsp;Fazer Simulação
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+		</div>
+
+	<!-- Modal Resumo -->
+	<div class="modal fade" id="modalRes" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+		<div class="modal-dialog" role="document" id="cont-modal-res-ped">
+			<div class="modal-content">
+
+				<div id="loaderDaquiPrali">
+					<div class="loader-spinner"></div>
+				</div> 
+
+				<div id="cont-mod">
+					<div class="modal-header">
+						<h4 class="modal-title" id="modalLabel">Resumo do pedido</h4>
+					</div>
+
+					<div id="CtResumoPedido">
+
+						<div class="form-group d-flex justify-content-between">
+							<label>Tipo de Serviço:</label>
+							<div id="tpServicoBb">Busca busca</div>
+						</div>
+
+						<div class="form-group d-flex justify-content-between">
+							<label>Origem:</label>
+							<div class="fw-200" id="origem_modal_buscabusca"></div>
+						</div>
+
+						<div class="form-group d-flex justify-content-between">
+							<label>Destino:</label>
+							<div class="fw-200" id="destino_modal_buscabusca"></div>
+						</div>
+
+						<div class="form-group d-flex justify-content-between">
+							<label>Categoria:</label>
+							<div class="fw-200" id="categoria_mer_buscabusca"></div>
+						</div>
+
+						<div class="form-group d-flex justify-content-between">
+							<label>Distancia Km:</label>
+							<div class="fw-200" id="km_modal_buscabusca"></div>
+						</div>
+						
+						<div class="form-group d-flex justify-content-between" id="ctResumoCotacao">
+							<label>Valor frete:</label>
+							<div class="fw-200" id="valorFrete_modal_buscabusca"></div>
+						</div>
+
+						<div class="mt-1" id="msg_aviso_entrega_coleta_bb">
+							<div class="col-md-12 col-lg-12" id="msg_valorNaoAtribuioColeta">
+								<label style="font-size: 12px !important">O preço pode variar conforme o clima, o dia, eventos e outros fatores</label>
+							</div>
+						</div>
+
+					</div>
+
+					<div class="modal-footer mb-2">
+						<button type="button" class="btn btn-outline-primary" data-dismiss="modal" onclick="closeModalDaquiPrali();">Editar</button>
+						<a type="button" class="btn btn-primary" data-dismiss="modal" id="btnWhats_bb">Confirmar solicitação</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+
+	</div>
+
+	</form>
+
+  <script src="./script/script.js"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script> 
+
+</body>
+</html>
