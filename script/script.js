@@ -631,7 +631,23 @@ async function validaNomeCompleto(nome) {
     }
 }
 
+async function validaNumeroResidencia(nome) {
 
+    try {
+        nome = (nome || '').trim();
+        // Verifica se está vazio
+        if (nome == '' || nome == null) {
+            exibeMsgRetorno("Numero é obrigatório!");
+            return false;
+        }
+        return true;
+
+    } catch (err) {
+        exibeMsgRetorno("Erro ao validar n°!");
+        showDetaisLog(false);
+        return false;
+    }
+}
 
 
 
@@ -1088,6 +1104,8 @@ async function buscabusca(){
     const cepOrigem = "03010000"; // (Fixed) Shopping Mega Polo Moda - Brás
     const cepDestino = $('#cep_dest_buscabusca').val().replace(/\D/g, ''); // (client)
     let tipoCarga = $('#BuscaBuscaTipoCarga').val();
+    let fullName = $('#fullNameBuscaBusca').val();
+    const numRes = $('#num_entrega_buscabusca').val();
 
     const valorPorKm = 2.1;
     const eixos = 2; // Van
@@ -1128,7 +1146,9 @@ async function buscabusca(){
     let mensagem = `
     🚚 *Cálculo de Frete*
 
-    📍 Destino: ${destino}
+    👤 Nome: ${fullName}
+
+    📍 Destino: Cep: ${destino}, N° ${numRes}
     🏘️ Bairro: ${bairro_entrega_buscabusca}
 
     📏 Distância: ${distanciaKm} km
@@ -1167,12 +1187,16 @@ function formatarPedagios(pedagios) {
 }
 
 async function openModal() {
+
     const cep = $('#cep_dest_buscabusca').val().replace(/\D/g, '');
     const fullName = $('#fullNameBuscaBusca').val();
-    
+    const num = $('#num_entrega_buscabusca').val();
+
     let name = await validaNomeCompleto(fullName);
     let ceps = await validaCeps(cep);
-    if (ceps == true && name == true){
+    let numero = await validaNumeroResidencia(num);
+
+    if (ceps == true && name == true && numero == true){
         buscabusca();
         $('#modalRes').modal('show');
 
