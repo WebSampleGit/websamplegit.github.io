@@ -1201,6 +1201,8 @@ async function buscabusca(){
     ━━━━━━━━━━━━━━━━━━
 
     📞 Em caso de dúvidas, estamos à disposição!
+
+    (*NÃO ALTERE O CONTEÚDO DESTA MENSAGEM*)
     `;
 
     // 🔗 Cria link
