@@ -1154,23 +1154,54 @@ async function buscabusca(){
 
     // 🧾 Monta mensagem
     let mensagem = `
-    🚚 *Cálculo de Frete*
+    🤝 *Obrigado por escolher a Vegas Transportes Aéreo* ✈️📦
 
-    👤 Nome: ${fullName}
+    Estamos felizes em atender você neste momento especial 👨‍✈️
 
-    📍 Destino: Cep: ${destino}, N° ${numRes}
-    🏘️ Bairro: ${bairro_entrega_buscabusca}
+    ━━━━━━━━━━━━━━━━━━
+    🚚 *CÁLCULO DE FRETE*
+    ━━━━━━━━━━━━━━━━━━
 
-    📏 Distância: ${distanciaKm} km
-    ⏱️ Tempo: ${tempoViagem} min
+    👤 *Cliente:* ${fullName}
 
-    💰 *Frete:* R$ ${valorFrete}
+    📍 *Destino:* ${destino}, Nº ${numRes}
+    🏘️ *Bairro:* ${bairro_entrega_buscabusca}
+
+    📏 *Distância:* ${distanciaKm} km
+    ⏱️ *Tempo estimado:* ${tempoViagem} min
+
+    🕒 *Prazo de entrega:* 24 a 72h úteis
+
+    ━━━━━━━━━━━━━━━━━━
+    💰 *VALORES*
+    ━━━━━━━━━━━━━━━━━━
+
+    🚚 Frete: R$ ${valorFrete}
     🛣️ Pedágios: R$ ${valorPedagios}
-    🔢 Qtd de pedagios: ${totalPed}
+    🔢 Total de pedágios: ${totalPed}
 
-    📋 *Lista de pedágios:*
-    ${listaPedagios}
-        `;
+    💵 *Valor total estimado:* R$ ${(Number(valorFrete) + Number(valorPedagios)).toFixed(2)}
+
+    ━━━━━━━━━━━━━━━━━━
+    🛣️ *DETALHES DA ROTA*
+    ━━━━━━━━━━━━━━━━━━
+
+    📋 Lista de pedágios:
+    ${listaPedagios || "Nenhum pedágio na rota"}
+
+    ━━━━━━━━━━━━━━━━━━
+    📦 *TIPOS DE SERVIÇO*
+    ━━━━━━━━━━━━━━━━━━
+
+    • Carga Agrupada (Interna)  
+    • Fracionada (Interestadual)  
+    • Carro Exclusivo  
+    • Carga Fechada  
+
+    ━━━━━━━━━━━━━━━━━━
+
+    📞 Em caso de dúvidas, estamos à disposição!
+    `;
 
     // 🔗 Cria link
     let link = "https://api.whatsapp.com/send?phone=5511913188606&text=" + encodeURIComponent(mensagem);
@@ -1184,6 +1215,7 @@ async function buscabusca(){
     $('#categoria_mer_buscabusca').text(tipoCarga);
     $('#km_modal_buscabusca').text(distanciaKm + "Km");
     $('#valorFrete_modal_buscabusca').text(parseFloat(frete).toFixed(2));
+
 }
 
 function formatarPedagios(pedagios) {
@@ -1262,3 +1294,4 @@ function calculaMargemLucro(){
     return margem;
 
 }
+
