@@ -1142,6 +1142,16 @@ async function buscabusca(){
         frete = valorFrete + horaMotor + resultado.valorPedagios;
     }
 
+    let margem = calculaMargemLucro();
+
+    
+    // meu lucro
+    debugger
+    let freteNum = parseFloat(frete);
+    let margemNum = parseFloat(margem);
+    frete = freteNum * (1 + margemNum / 100);
+
+
     // 🧾 Monta mensagem
     let mensagem = `
     🚚 *Cálculo de Frete*
@@ -1173,7 +1183,7 @@ async function buscabusca(){
     $('#destino_modal_buscabusca').text(bairro_entrega_buscabusca); 
     $('#categoria_mer_buscabusca').text(tipoCarga);
     $('#km_modal_buscabusca').text(distanciaKm + "Km");
-    $('#valorFrete_modal_buscabusca').text(frete.toFixed(2));
+    $('#valorFrete_modal_buscabusca').text(parseFloat(frete).toFixed(2));
 }
 
 function formatarPedagios(pedagios) {
@@ -1212,4 +1222,43 @@ async function openModal() {
 
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+function calculaMargemLucro(){
+
+    const feriados = [
+        "2026-01-01", // Ano Novo
+        "2026-04-03", // Sexta-feira Santa (exemplo)
+        "2026-04-21", // Tiradentes
+        "2026-05-01", // Dia do Trabalhador
+        "2026-09-07", // Independência
+        "2026-12-25"  // Natal
+    ];
+
+
+    function formatarData(data) {
+        return data.toISOString().split('T')[0];
+    }
+
+    const hoje = new Date();
+    const diaSemana = hoje.getDay();
+    const dataHoje = formatarData(hoje);
+    const Feriado = feriados.includes(dataHoje);
+    let margem = 80;
+
+    if (Feriado) {
+        margem = 80;
+    }
+    else if (diaSemana >= 1 && diaSemana <= 4) {
+        margem = 60;
+    }
+    else if (diaSemana === 5) {
+        margem = 70;
+    }
+    else if (diaSemana === 0 || diaSemana === 6) {
+        margem = 80;
+    }
+
+    return margem;
+
 }
