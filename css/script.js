@@ -3,23 +3,12 @@
 // ==========================
 const ORS_API_KEY = 'eyJvcmciOiI1YjNjZTM1OTc4NTExMTAwMDFjZjYyNDgiLCJpZCI6IjNmMTlmNGM2OGU3ZjRkOGJhNGJkMGZlMjg3ZGExZTM1IiwiaCI6Im11cm11cjY0In0=';
 
-function openMenuMobile2() {
+function openMenuMobile() {
     $("#menu-mobile-id").css("display", "flex");
 }
 
-function closeMenuMobile2() {
-    $("#menu-mobile-id").css("display", "none");
-}
-
-function openMenuMobile() {
-  const menu = document.getElementById('menu-mobile-id');
-  if (menu) menu.classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
 function closeMenuMobile() {
-  const menu = document.getElementById('menu-mobile-id');
-  if (menu) menu.classList.remove('open');
-  document.body.style.overflow = '';
+    $("#menu-mobile-id").css("display", "none");
 }
 
 function exibeDuvidaFrequente(duv) {
@@ -618,19 +607,19 @@ async function validaNomeCompleto(nome) {
         }
 
         // Verifica tamanho mínimo
-        if (nome.length < 5) {
+        if (nome.length < 10) {
             exibeMsgRetorno("Nome muito curto! Digite o nome completo.");
             showDetaisLog(false);
             return false;
         }
 
         // Verifica se tem pelo menos 2 palavras (nome + sobrenome)
-        // const partes = nome.split(/\s+/);
-        // if (partes.length < 2) {
-        //     exibeMsgRetorno("Digite nome e sobrenome!");
-        //     showDetaisLog(false);
-        //     return false;
-        // }
+        const partes = nome.split(/\s+/);
+        if (partes.length < 2) {
+            exibeMsgRetorno("Digite nome e sobrenome!");
+            showDetaisLog(false);
+            return false;
+        }
 
         showDetaisLog(true);
         return true;
@@ -1157,7 +1146,7 @@ async function buscabusca(){
 
     
     // meu lucro
-    
+    debugger
     let freteNum = parseFloat(frete);
     let margemNum = parseFloat(margem);
     frete = freteNum * (1 + margemNum / 100);
@@ -1263,10 +1252,6 @@ async function openModal() {
         $('#cont-mod').show();
     }
 
-}
-
-async function closeModal() {
-    $('#modalRes').modal('hide');
 }
 
 function sleep(ms) {

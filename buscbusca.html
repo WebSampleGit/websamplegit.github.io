@@ -1,214 +1,204 @@
-<html>
+<!DOCTYPE html>
+<html lang="pt-BR">
 <head>
-	<!-- Icon nav bar -->
-	<link rel="shortcut icon" href="" type="image/x-icon">
-
-	<title>Busca busca</title>
-
-  <link rel="stylesheet" href="./style/style.css">
+  <meta charset="UTF-8">
+  <title>Entrega Busca Busca — Vegas Transportes</title>
+  <link rel="shortcut icon" href="./css/img/icone-site.png" type="image/x-icon">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="./style/style.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://unpkg.com/@mapbox/polyline"></script>
-  
 </head>
 <body>
+  <nav class="navbar-custom">
+    <div class="container-fluid">
+      <a href="./index.html"><img id="logo-home" src="./css/img/logo.png" alt="Vegas Transportes"></a>
+      <div id="navbarNavMenu"><ul class="navbar-nav" style="flex-direction:row;">
+        <li class="nav-item"><a class="nav-link" href="./index.html">Início</a></li>
+        <li class="nav-item"><a class="nav-link active" href="./servicos.html">Serviços</a></li>
+        <li class="nav-item"><a class="nav-link" href="./duvidas.html">Dúvidas</a></li>
+        <li class="nav-item"><a class="nav-link" href="./contatos.html">Contato</a></li>
+        <li class="nav-item"><a class="nav-link" href="./sobre.html">Sobre</a></li>
+      </ul></div>
+      <div id="navbarNavRedes"><ul class="navbar-nav" style="flex-direction:row;gap:4px;align-items:center;">
+        <li class="nav-item-rede"><a href="https://www.instagram.com/vegastransportes" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92s.546-.453.92-.598c.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334"/></svg></a></li>
+        <li class="nav-item-rede"><a href="https://www.facebook.com/vegastransportes" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951"/></svg></a></li>
+        <li class="nav-item-rede"><a href="https://api.whatsapp.com/send?phone=5511913188606" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/></svg></a></li>
+      </ul></div>
+      <div class="collapse-mobile"><div class="nav-item-menu" id="menuOpen" onclick="openMenuMobile();"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"/></svg></div></div>
+    </div>
+  </nav>
+  <div class="menu-mobile" id="menu-mobile-id"><div class="menu-options"><div class="options-list">
+    <ul id="menuClose" onclick="closeMenuMobile();" style="list-style:none;padding:0;position:absolute;top:24px;right:24px;cursor:pointer;color:var(--text-secondary);"><li><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" viewBox="0 0 16 16"><path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/></svg></li></ul>
+    <ul id="menuMobileOptions" style="list-style:none;padding:0;">
+      <li class="nav-item"><a class="nav-link" id="mobile-link" href="./index.html">Início <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/></svg></a></li>
+      <li class="nav-item"><a class="nav-link" id="mobile-link" href="./servicos.html">Serviços <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/></svg></a></li>
+      <li class="nav-item"><a class="nav-link" id="mobile-link" href="./duvidas.html">Dúvidas <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/></svg></a></li>
+      <li class="nav-item"><a class="nav-link" id="mobile-link" href="./contatos.html">Contato <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/></svg></a></li>
+      <li class="nav-item"><a class="nav-link" id="mobile-link" href="./sobre.html">Sobre <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/></svg></a></li>
+    </ul>
+  </div></div></div>
 
-	<form id="form" method="post" autocomplete="off">
-		<div class="container">
+  <!-- MAIN -->
+  <div class="form-page">
+    <div class="container" style="max-width:760px;">
 
-			<div class="mt-2" id="msg_retorno_ctn">
+      <div class="form-header">
+        <a href="./servicos.html" class="btn-back">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z"/></svg>
+        </a>
+        <div>
+          <p class="form-subtitle">Moto Elétrica</p>
+          <h1 class="form-title">Entrega Busca Busca</h1>
+        </div>
+        <div class="tag-badge" style="margin-left:auto;">Coleta 24h</div>
+      </div>
 
-				<h1 class="mb-4"><img id="logo" src="./css/img/logo.png" /></h1>
+      <div id="msg_retorno"><div id="msg_exibicao"></div></div>
 
-				<div class="col-md-12 col-lg-12" id="msg_retorno">
-					<div id="msg_exibicao"></div>
-				</div>
+      <form id="form" autocomplete="off">
 
-			</div>
-
-			<!-- Dados do destinho -->
-			<div id="" class="row mb-4">
-
-				<div class="titleService">
-					<h2 class="mb-2">Busca busca Entregas</h2>
-					<a class="itemBack" href="./index.html">
-						<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-arrow-left-circle" viewBox="0 0 16 16">
-							<path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z" />
-						</svg>
-					</a>
-				</div>
-
-				<div class="col-md-4 mt-1">
-					<div class="form-group">
-						<label>Origem</label>
-						<input type="text" class="form-control" value="São Paulo" disabled>
-					</div>
-				</div>
-
-                <div class="col-md-4 mt-1">
-					<div class="form-group">
-						<label>Destino <label class="obrigatorio">*</label></label>
-						<input id="cep_dest_buscabusca" type="text" class="form-control" placeholder="Cep. Ex: 08057-220" maxlength="8" onkeypress="apenasNumeros(event)" onchange="mascaraCEP()">
-					</div>
-				</div>
-
-				<div class="col-md-4 mt-1">
-					<div class="form-group">
-						<label for="TipoCarga">Categoria da Carga <label class="obrigatorio">*</label></label>
-						<select required="required" id="BuscaBuscaTipoCarga" class="form-control" name="TipoCarga">
-							<option value="Moto Elétrica" selected>Moto Elétrica</option>
-						</select>
-					</div>
-				</div>
-
-			</div>
-
-            <div id="endereco_log_buscabusca" class="row mb-4" hidden>
-				<div class="col-md-6 mt-1">
-					<div class="form-group">
-						<label>Endereço (destino)</label>
-						<input type="text" class="form-control" disabled id="end_entrega_buscabusca">
-					</div>
-				</div>
-                <div class="col-md-3 mt-1">
-					<div class="form-group">
-						<label>Bairro</label>
-						<input type="text" class="form-control" disabled id="bairro_entrega_buscabusca">
-					</div>
-				</div>
-                <div class="col-md-3 mt-1">
-					<div class="form-group">
-						<label>Numero <label class="obrigatorio">*</label></label>
-						<input type="text" class="form-control" id="num_entrega_buscabusca">
-					</div>
-				</div>
-			</div>
-
-			<!-- Dados da Carga -->
-			<div id="" class="row mb-4">
-
-				<h4 class="mb-2">Dados da carga</h4>
-
-				<div class="col-md-6">
-					<div class="form-group">
-						<label for="Peso">Nome completo <label class="obrigatorio">*</label></label>
-						<input required="required" type="text" class="form-control" id="fullNameBuscaBusca" placeholder="Ex: João Pedro da Silva" maxlength="50">
-					</div>
-				</div>
-
-                <div class="col-md-2">
-					<div class="form-group">
-						<label for="Peso">Peso <label class="obrigatorio">opcional</label></label>
-						<input required="required" type="text" class="form-control" id="peso_carga_busca_busca" placeholder="Ex: 50" maxlength="10" onkeypress="apenasNumeros(event)">
-					</div>
-				</div>
-
-				<div class="col-md-2">
-					<div class="form-group">
-						<label for="Peso">N° Telefone <label class="obrigatorio">opcional</label></label>
-						<input required="required" type="text" class="form-control" id="peso_carga_busca_busca"  placeholder="Ex: 11 95050 6012" maxlength="10" onkeypress="apenasNumeros(event)">
-					</div>
-				</div>
-
-				<div class="col-md-2">
-					<div class="form-group">
-						<label>Prazo de coleta</label>
-						<input type="text" class="form-control" value="24 Horas" disabled>
-					</div>
-				</div>
-
-			</div>
-
-
-            <!-- Confirm-->
-            <div class="mt-4">
-                <div class="col-md-12 col-lg-12">
-                    <div class="form-group d-flex justify-content-between">
-                        <button type="button" id="Continuar" class="btn btn-primary" onclick="openModal();">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-currency-dollar" viewBox="0 0 16 16">
-                                <path d="M4 10.781c.148 1.667 1.513 2.85 3.591 3.003V15h1.043v-1.216c2.27-.179 3.678-1.438 3.678-3.3 0-1.59-.947-2.51-2.956-3.028l-.722-.187V3.467c1.122.11 1.879.714 2.07 1.616h1.47c-.166-1.6-1.54-2.748-3.54-2.875V1H7.591v1.233c-1.939.23-3.27 1.472-3.27 3.156 0 1.454.966 2.483 2.661 2.917l.61.162v4.031c-1.149-.17-1.94-.8-2.131-1.718zm3.391-3.836c-1.043-.263-1.6-.825-1.6-1.616 0-.944.704-1.641 1.8-1.828v3.495l-.2-.05zm1.591 1.872c1.287.323 1.852.859 1.852 1.769 0 1.097-.826 1.828-2.2 1.939V8.73z" />
-                            </svg>&nbsp;Fazer Simulação
-                        </button>
-                    </div>
-                </div>
+        <!-- Rota -->
+        <div class="form-card">
+          <div class="form-card-title">Rota de entrega</div>
+          <div class="form-row cols-3">
+            <div><label>Origem</label><input type="text" class="form-control" value="São Paulo" disabled></div>
+            <div>
+              <label>Destino (CEP) <span class="obrigatorio">* obrigatório</span></label>
+              <input id="cep_dest_buscabusca" type="text" class="form-control" placeholder="Ex: 08057220" maxlength="8" onkeypress="apenasNumeros(event)" onchange="mascaraCEP()">
             </div>
+            <div>
+              <label>Categoria</label>
+              <select id="BuscaBuscaTipoCarga" class="form-control" name="TipoCarga">
+                <option value="Moto Elétrica">Moto Elétrica</option>
+              </select>
+            </div>
+          </div>
+        </div>
 
-		</div>
+        <!-- Endereço destino (aparece após CEP) -->
+        <div id="endereco_log_buscabusca" class="form-card" hidden>
+          <div class="form-card-title">Endereço de entrega</div>
+          <div class="form-row cols-2">
+            <div><label>Logradouro</label><input type="text" class="form-control" disabled id="end_entrega_buscabusca"></div>
+            <div><label>Bairro</label><input type="text" class="form-control" disabled id="bairro_entrega_buscabusca"></div>
+          </div>
+          <div class="form-row cols-2" style="margin-top:16px;">
+            <div><label>Número <span class="obrigatorio">* obrigatório</span></label><input type="text" class="form-control" id="num_entrega_buscabusca" placeholder="Ex: 123"></div>
+          </div>
+        </div>
 
-	<!-- Modal Resumo -->
-	<div class="modal fade" id="modalRes" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <!-- Dados carga -->
+        <div class="form-card">
+          <div class="form-card-title">Dados da carga</div>
+          <div class="form-row cols-4">
+            <div style="grid-column: span 2;">
+              <label>Nome completo <span class="obrigatorio">* obrigatório</span></label>
+              <input required type="text" class="form-control" id="fullNameBuscaBusca" placeholder="Ex: João Pedro da Silva" maxlength="50">
+            </div>
+            <div>
+              <label>Peso (kg) <span class="obrigatorio">opcional</span></label>
+              <input type="text" class="form-control" id="peso_carga_busca_busca" placeholder="Ex: 5" maxlength="10" onkeypress="apenasNumeros(event)">
+            </div>
+            <div>
+              <label>Telefone <span class="obrigatorio">opcional</span></label>
+              <input type="text" class="form-control" placeholder="11 9XXXX XXXX" maxlength="11" onkeypress="apenasNumeros(event)">
+            </div>
+          </div>
+          <div style="margin-top:20px;">
+            <label>Prazo de coleta</label>
+            <input type="text" class="form-control" value="24 Horas" disabled style="max-width:200px;">
+          </div>
+        </div>
 
-		<div class="modal-dialog" role="document" id="cont-modal-res-ped">
-			<div class="modal-content">
+        <div class="form-actions" style="justify-content:flex-end;">
+          <button type="button" id="Continuar" class="btn-primary-custom" onclick="openModal();">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path d="M4 10.781c.148 1.667 1.513 2.85 3.591 3.003V15h1.043v-1.216c2.27-.179 3.678-1.438 3.678-3.3 0-1.59-.947-2.51-2.956-3.028l-.722-.187V3.467c1.122.11 1.879.714 2.07 1.616h1.47c-.166-1.6-1.54-2.748-3.54-2.875V1H7.591v1.233c-1.939.23-3.27 1.472-3.27 3.156 0 1.454.966 2.483 2.661 2.917l.61.162v4.031c-1.149-.17-1.94-.8-2.131-1.718zm3.391-3.836c-1.043-.263-1.6-.825-1.6-1.616 0-.944.704-1.641 1.8-1.828v3.495l-.2-.05zm1.591 1.872c1.287.323 1.852.859 1.852 1.769 0 1.097-.826 1.828-2.2 1.939V8.73z"/></svg>
+            Fazer Simulação
+          </button>
+        </div>
 
-				<div id="loaderDaquiPrali">
-					<div class="loader-spinner"></div>
-				</div> 
+      </form>
+    </div>
+  </div>
 
-				<div id="cont-mod">
-					<div class="modal-header">
-						<h4 class="modal-title" id="modalLabel">Resumo do pedido</h4>
-					</div>
+  <!-- ── MODAL RESUMO ─────────────────────────── -->
+  <div class="modal fade" id="modalRes" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" style="max-width:480px;">
+      <div class="modal-content" style="position:relative;">
 
-					<div id="CtResumoPedido">
+        <!-- Loader overlay -->
+        <div id="loaderDaquiPrali" style="display:none;position:absolute;inset:0;background:rgba(6,15,22,0.92);z-index:10;align-items:center;justify-content:center;border-radius:24px;">
+          <div class="loader-spinner"></div>
+        </div>
 
-						<div class="form-group d-flex justify-content-between">
-							<label>Tipo de Serviço:</label>
-							<div id="tpServicoBb">Busca busca</div>
-						</div>
+        <div id="cont-mod">
+          <!-- Header -->
+          <div class="modal-header">
+            <div style="display:flex;align-items:center;gap:12px;width:100%;">
+              <div style="width:36px;height:36px;background:rgba(30,143,255,0.12);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--blue-primary);flex-shrink:0;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16"><path d="M9 1a2 2 0 0 1 2 2v0.268A2 2 0 0 1 12 5v1a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 1-1.732V3a2 2 0 0 1 2-2h2zm0 1H7a1 1 0 0 0-1 1v.268c.313-.173.674-.268 1.06-.268h1.88c.386 0 .747.095 1.06.268V3a1 1 0 0 0-1-1zM6 5a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1H6z"/></svg>
+              </div>
+              <h5 class="modal-title" id="modalLabel" style="font-family:var(--font-display);font-size:0.95rem;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;color:var(--text-primary);margin:0;">Resumo do pedido</h5>
+              <span class="tag-badge" style="margin-left:auto;" id="tpServicoBb">Busca Busca</span>
+            </div>
+          </div>
 
-						<div class="form-group d-flex justify-content-between">
-							<label>Origem:</label>
-							<div class="fw-200" id="origem_modal_buscabusca"></div>
-						</div>
+          <!-- Body -->
+          <div id="CtResumoPedido">
+            <div class="resumo-row">
+              <label>Tipo de serviço</label>
+              <span class="resumo-val" id="tpServicoBb_val">Busca Busca</span>
+            </div>
+            <div class="resumo-row">
+              <label>Origem</label>
+              <span class="resumo-val" id="origem_modal_buscabusca"></span>
+            </div>
+            <div class="resumo-row">
+              <label>Destino</label>
+              <span class="resumo-val" id="destino_modal_buscabusca"></span>
+            </div>
+            <div class="resumo-row">
+              <label>Categoria</label>
+              <span class="resumo-val" id="categoria_mer_buscabusca"></span>
+            </div>
+            <div class="resumo-row">
+              <label>Distância</label>
+              <span class="resumo-val" id="km_modal_buscabusca"></span>
+            </div>
+            <div class="resumo-row" id="ctResumoCotacao">
+              <div>
+                <label>Valor do frete</label>
+                <div id="valorFrete_modal_buscabusca"></div>
+              </div>
+            </div>
+            <div id="msg_aviso_entrega_coleta_bb" style="margin-top:8px;">
+              <label id="msg_valorNaoAtribuioColeta">O preço pode variar conforme o clima, o dia, eventos e outros fatores.</label>
+            </div>
+          </div>
 
-						<div class="form-group d-flex justify-content-between">
-							<label>Destino:</label>
-							<div class="fw-200" id="destino_modal_buscabusca"></div>
-						</div>
+          <!-- Footer -->
+          <div class="modal-footer">
+            <button type="button" class="btn-secondary-custom" onclick="closeModal();">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/></svg>
+              Editar
+            </button>
+            <a type="button" class="btn-primary-custom" id="btnWhats_bb" href="https://api.whatsapp.com/send?phone=5511913188606" target="_blank">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/></svg>
+              Confirmar pedido
+            </a>
+          </div>
+        </div>
 
-						<div class="form-group d-flex justify-content-between">
-							<label>Categoria:</label>
-							<div class="fw-200" id="categoria_mer_buscabusca"></div>
-						</div>
+      </div>
+    </div>
+  </div>
 
-						<div class="form-group d-flex justify-content-between">
-							<label>Distancia Km:</label>
-							<div class="fw-200" id="km_modal_buscabusca"></div>
-						</div>
-						
-						<div class="form-group d-flex justify-content-between" id="ctResumoCotacao">
-							<label>Valor frete:</label>
-							<div class="fw-200" id="valorFrete_modal_buscabusca"></div>
-						</div>
-
-						<div class="mt-1" id="msg_aviso_entrega_coleta_bb">
-							<div class="col-md-12 col-lg-12" id="msg_valorNaoAtribuioColeta">
-								<label style="font-size: 12px !important">O preço pode variar conforme o clima, o dia, eventos e outros fatores</label>
-							</div>
-						</div>
-
-					</div>
-
-					<div class="modal-footer mb-2">
-						<button type="button" class="btn btn-outline-primary" data-dismiss="modal" onclick="closeModalDaquiPrali();">Editar</button>
-						<a type="button" class="btn btn-primary" data-dismiss="modal" id="btnWhats_bb">Confirmar solicitação</a>
-					</div>
-				</div>
-			</div>
-		</div>
-
-
-
-	</div>
-
-	</form>
+  <div class="rodape"><label id="txt_rodape">Copyright © 2024 – Todos os Direitos Reservados.</label></div>
 
   <script src="./script/script.js"></script>
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script> 
-
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
