@@ -1,0 +1,1681 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Camisa 90's — Camisetas Oficiais</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-deep: #080810;
+      --bg-card: #0f0f1a;
+      --bg-surface: #13131f;
+      --bg-raised: #1a1a2a;
+      --accent: #c8f060;
+      --accent-dim: #a8d040;
+      --accent-glow: rgba(200, 240, 96, 0.12);
+      --text-primary: #f0f0f8;
+      --text-secondary: #8888aa;
+      --text-muted: #555570;
+      --border: rgba(255,255,255,0.06);
+      --border-accent: rgba(200, 240, 96, 0.25);
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg-deep);
+      color: var(--text-primary);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* SCROLLBAR */
+    ::-webkit-scrollbar { width: 4px; background: var(--bg-deep); }
+    ::-webkit-scrollbar-thumb { background: var(--bg-raised); border-radius: 2px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+    .list-card::-webkit-scrollbar, .list-subcard::-webkit-scrollbar { display: none; }
+    .list-card, .list-subcard { scrollbar-width: none; }
+
+    /* HEADER */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      background: rgba(8, 8, 16, 0.85);
+      border-bottom: 1px solid var(--border);
+      padding: 0 28px;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .header-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo-text {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2rem;
+      letter-spacing: 0.04em;
+      color: var(--text-primary);
+      line-height: 1;
+    }
+
+    .logo-text span {
+      color: var(--accent);
+    }
+
+    .logo-badge {
+      background: var(--accent);
+      color: #080810;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      font-weight: 500;
+      padding: 2px 7px;
+      border-radius: 20px;
+      letter-spacing: 0.05em;
+      margin-top: 2px;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-sm);
+      background: var(--bg-raised);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s;
+      color: var(--text-secondary);
+    }
+
+    .btn-icon:hover {
+      background: var(--bg-surface);
+      border-color: var(--border-accent);
+      color: var(--accent);
+    }
+
+    .btn-icon svg { width: 18px; height: 18px; }
+
+    /* SEARCH BAR */
+    .search-bar {
+      display: none;
+      padding: 12px 28px;
+      background: var(--bg-card);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .search-bar.open { display: block; }
+
+    .search-input-wrap {
+      position: relative;
+      max-width: 500px;
+    }
+
+    .search-input-wrap svg {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 16px;
+      height: 16px;
+      color: var(--text-muted);
+    }
+
+    .search-input {
+      width: 100%;
+      background: var(--bg-raised);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 10px 14px 10px 40px;
+      color: var(--text-primary);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .search-input:focus { border-color: var(--border-accent); }
+    .search-input::placeholder { color: var(--text-muted); }
+
+    /* LEAGUE SELECTOR */
+    .league-section {
+      padding: 20px 28px 0;
+    }
+
+    .section-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+    }
+
+    .list-card {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      overflow-y: hidden;
+      scroll-behavior: smooth;
+      padding-bottom: 4px;
+    }
+
+    .league-card {
+      flex: 0 0 auto;
+      width: 100px;
+      cursor: pointer;
+      border-radius: var(--radius-md);
+      border: 1.5px solid var(--border);
+      background: var(--bg-card);
+      overflow: hidden;
+      transition: all 0.25s cubic-bezier(.4,0,.2,1);
+      position: relative;
+    }
+
+    .league-card:hover {
+      border-color: var(--border-accent);
+      transform: translateY(-2px);
+    }
+
+    .league-card.active {
+      border-color: var(--accent);
+      background: var(--bg-raised);
+    }
+
+    .league-card.active::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--accent);
+    }
+
+    .league-img {
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      display: block;
+      filter: grayscale(20%);
+      transition: filter 0.2s;
+    }
+
+    .league-card:hover .league-img { filter: grayscale(0%); }
+    .league-card.active .league-img { filter: grayscale(0%); }
+
+    .league-name {
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      text-align: center;
+      padding: 7px 4px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .league-card.active .league-name { color: var(--accent); }
+
+    /* CLUB SUBFILTER */
+    .club-section {
+      padding: 18px 28px 0;
+    }
+
+    .list-subcard {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+    }
+
+    .club-pill {
+      flex: 0 0 auto;
+      padding: 6px 16px;
+      border-radius: 30px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      background: var(--bg-raised);
+      border: 1px solid var(--border);
+      cursor: pointer;
+      transition: all 0.2s;
+      white-space: nowrap;
+      user-select: none;
+    }
+
+    .club-pill:hover {
+      color: var(--text-primary);
+      border-color: rgba(255,255,255,0.15);
+    }
+
+    .club-pill.active {
+      color: #080810;
+      background: var(--accent);
+      border-color: var(--accent);
+    }
+
+    /* CONTENT AREA */
+    .content {
+      padding: 24px 28px 60px;
+    }
+
+    .results-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    .results-count {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .results-count span { color: var(--accent); }
+
+    /* SHIRT GRID */
+    .list-shirts {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 16px;
+    }
+
+    .shirt-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(.4,0,.2,1);
+      position: relative;
+    }
+
+    .shirt-card:hover {
+      border-color: var(--border-accent);
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.4), 0 0 0 1px var(--border-accent);
+    }
+
+    .shirt-img-wrap {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 3/3.5;
+      background: var(--bg-surface);
+    }
+
+    .shirt-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+
+    .shirt-card:hover .shirt-img-wrap img {
+      transform: scale(1.04);
+    }
+
+    .shirt-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(8,8,16,0.7) 0%, transparent 50%);
+      opacity: 0;
+      transition: opacity 0.3s;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding-bottom: 16px;
+    }
+
+    .shirt-card:hover .shirt-overlay { opacity: 1; }
+
+    .btn-view {
+      background: var(--accent);
+      color: #080810;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 8px 20px;
+      border-radius: 30px;
+      border: none;
+      cursor: pointer;
+      letter-spacing: 0.02em;
+      transform: translateY(6px);
+      transition: transform 0.3s;
+    }
+
+    .shirt-card:hover .btn-view { transform: translateY(0); }
+
+    .shirt-info {
+      padding: 12px 14px 14px;
+    }
+
+    .shirt-title {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      line-height: 1.3;
+      margin-bottom: 3px;
+    }
+
+    .shirt-mod {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+
+    .shirt-price-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .shirt-price {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.3rem;
+      letter-spacing: 0.04em;
+      color: var(--accent);
+      line-height: 1;
+    }
+
+    .shirt-price-label {
+      font-size: 0.62rem;
+      color: var(--text-muted);
+      font-family: 'DM Mono', monospace;
+    }
+
+    /* HIDDEN GRIDS */
+    .list-shirts { display: none; }
+    .list-shirts.active { display: grid; }
+
+    /* HIDDEN SUBCARDS */
+    .club-group { display: none; }
+    .club-group.active { display: flex; gap: 8px; }
+
+    /* MODAL */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.85);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+    }
+
+    .modal-overlay.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .modal {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      max-width: 820px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      transform: translateY(20px) scale(0.97);
+      transition: transform 0.3s cubic-bezier(.4,0,.2,1);
+    }
+
+    .modal-overlay.open .modal {
+      transform: translateY(0) scale(1);
+    }
+
+    .modal::-webkit-scrollbar { width: 3px; }
+    .modal::-webkit-scrollbar-thumb { background: var(--bg-raised); }
+
+    .modal-images {
+      background: var(--bg-surface);
+      border-radius: var(--radius-lg) 0 0 var(--radius-lg);
+      overflow: hidden;
+    }
+
+    .modal-main-img {
+      width: 100%;
+      aspect-ratio: 3/3.5;
+      object-fit: cover;
+      display: block;
+    }
+
+    .modal-thumbs {
+      display: flex;
+      gap: 6px;
+      padding: 10px;
+      background: var(--bg-card);
+    }
+
+    .modal-thumb {
+      width: 54px;
+      height: 54px;
+      object-fit: cover;
+      border-radius: 6px;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: border-color 0.2s;
+      flex-shrink: 0;
+    }
+
+    .modal-thumb.active { border-color: var(--accent); }
+    .modal-thumb:hover { border-color: var(--border-accent); }
+
+    .modal-details {
+      padding: 28px 24px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      width: 36px;
+      height: 36px;
+      background: var(--bg-raised);
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: var(--text-secondary);
+      transition: all 0.2s;
+    }
+
+    .modal-close:hover { background: var(--bg-surface); color: var(--text-primary); }
+    .modal-close svg { width: 16px; height: 16px; }
+
+    .modal-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: var(--accent-glow);
+      border: 1px solid var(--border-accent);
+      padding: 3px 10px;
+      border-radius: 20px;
+      display: inline-block;
+      margin-bottom: 14px;
+    }
+
+    .modal-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2rem;
+      letter-spacing: 0.03em;
+      line-height: 1.1;
+      margin-bottom: 6px;
+    }
+
+    .modal-subtitle {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+
+    .modal-divider {
+      height: 1px;
+      background: var(--border);
+      margin: 16px 0;
+    }
+
+    .modal-desc {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      line-height: 1.65;
+      flex-grow: 1;
+    }
+
+    .price-block {
+      margin-top: 20px;
+      background: var(--bg-raised);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      border: 1px solid var(--border);
+    }
+
+    .price-main-label {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      font-family: 'DM Mono', monospace;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 4px;
+    }
+
+    .price-main {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.5rem;
+      color: var(--accent);
+      letter-spacing: 0.04em;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .price-alt {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .price-alt strong { color: var(--text-secondary); }
+
+    .modal-cta {
+      margin-top: 14px;
+      display: flex;
+      gap: 8px;
+    }
+
+    .btn-primary {
+      flex: 1;
+      background: var(--accent);
+      color: #080810;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      padding: 12px;
+      border-radius: var(--radius-sm);
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s;
+      letter-spacing: 0.02em;
+    }
+
+    .btn-primary:hover { background: var(--accent-dim); }
+
+    .btn-secondary {
+      padding: 12px 14px;
+      background: var(--bg-raised);
+      color: var(--text-secondary);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 500;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-secondary:hover { border-color: var(--border-accent); color: var(--text-primary); }
+
+    /* RESPONSIVE */
+    @media (max-width: 640px) {
+      header { padding: 0 16px; }
+      .league-section, .club-section, .content { padding-left: 16px; padding-right: 16px; }
+      .modal { grid-template-columns: 1fr; }
+      .modal-images { border-radius: var(--radius-lg) var(--radius-lg) 0 0; }
+      .modal-main-img { aspect-ratio: 4/3; }
+    }
+
+    /* PROMO BANNER */
+    .promo-banner {
+      margin: 18px 28px 0;
+      background: linear-gradient(135deg, var(--accent-glow), rgba(200,240,96,0.05));
+      border: 1px solid var(--border-accent);
+      border-radius: var(--radius-md);
+      padding: 12px 18px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .promo-icon {
+      width: 32px;
+      height: 32px;
+      background: var(--accent);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .promo-icon svg { width: 16px; height: 16px; color: #080810; }
+
+    .promo-text {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      line-height: 1.4;
+    }
+
+    .promo-text strong { color: var(--accent); }
+
+    /* ANIMATE IN */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .shirt-card {
+      animation: fadeUp 0.35s ease both;
+    }
+
+    .shirt-card:nth-child(1) { animation-delay: 0.03s; }
+    .shirt-card:nth-child(2) { animation-delay: 0.07s; }
+    .shirt-card:nth-child(3) { animation-delay: 0.11s; }
+    .shirt-card:nth-child(4) { animation-delay: 0.15s; }
+    .shirt-card:nth-child(5) { animation-delay: 0.19s; }
+    .shirt-card:nth-child(6) { animation-delay: 0.23s; }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="header-logo">
+      <div>
+        <div class="logo-text">Camisa <span>90</span>'s</div>
+      </div>
+      <div class="logo-badge">STORE</div>
+    </div>
+    <div class="header-actions">
+      <div class="btn-icon" onclick="toggleSearch()" title="Buscar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      </div>
+    </div>
+  </header>
+
+  <!-- SEARCH BAR -->
+  <div class="search-bar" id="searchBar">
+    <div class="search-input-wrap">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input type="text" class="search-input" placeholder="Buscar camiseta, clube, temporada..." oninput="filterSearch(this.value)" id="searchInput">
+    </div>
+  </div>
+
+  <!-- PROMO BANNER -->
+  <div class="promo-banner">
+    <div class="promo-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+    </div>
+    <div class="promo-text">
+      <strong>Malha Nacional por R$ 80</strong> — Na descrição de cada camisa você encontra a opção de malha nacional com desconto especial.
+    </div>
+  </div>
+
+  <!-- LEAGUE SELECTOR -->
+  <section class="league-section">
+    <div class="section-label">Ligas</div>
+    <div class="list-card" id="leagueSlider">
+
+      <div id="brasileirao" class="league-card active" onclick="selectLeague('brasileirao', 'todas')">
+        <img class="league-img" src="./Imgs/brasileirao.jpg" draggable="false" alt="Brasileirão">
+        <div class="league-name">Brasileirão</div>
+      </div>
+
+      <div id="premierleague" class="league-card" onclick="selectLeague('premierleague', 'todas_premierleague')">
+        <img class="league-img" src="./Imgs/premier.jpg" draggable="false" alt="Premier League">
+        <div class="league-name">Premier League</div>
+      </div>
+
+      <div id="laliga" class="league-card" onclick="selectLeague('laliga', 'todas_laliga')">
+        <img class="league-img" src="./Imgs/laliga.jpg" draggable="false" alt="La Liga">
+        <div class="league-name">La Liga</div>
+      </div>
+
+      <div id="liga01" class="league-card" onclick="selectLeague('liga01', 'todas_liga01')">
+        <img class="league-img" src="./Imgs/liga01.jpg" draggable="false" alt="Liga 1">
+        <div class="league-name">Ligue 1</div>
+      </div>
+
+      <div id="bundesliga" class="league-card" onclick="selectLeague('bundesliga', 'todas_bundesliga')">
+        <img class="league-img" src="./Imgs/bundesliga.jpg" draggable="false" alt="Bundesliga">
+        <div class="league-name">Bundesliga</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CLUB PILLS -->
+  <section class="club-section">
+
+    <div class="list-subcard club-group active" id="list-brasileirao">
+      <div id="todas" class="club-pill active" onclick="selectClub('todas', 'brasileirao')">Todas</div>
+      <div id="corinthias" class="club-pill" onclick="selectClub('corinthias', 'brasileirao')">Corinthians</div>
+      <div id="flamengo" class="club-pill" onclick="selectClub('flamengo', 'brasileirao')">Flamengo</div>
+      <div id="saopaulo" class="club-pill" onclick="selectClub('saopaulo', 'brasileirao')">São Paulo</div>
+      <div id="santos" class="club-pill" onclick="selectClub('santos', 'brasileirao')">Santos</div>
+      <div id="palmeiras" class="club-pill" onclick="selectClub('palmeiras', 'brasileirao')">Palmeiras</div>
+    </div>
+
+    <div class="list-subcard club-group" id="list-premierleague">
+      <div id="todas_premierleague" class="club-pill active" onclick="selectClub('todas_premierleague', 'premierleague')">Todas</div>
+      <div id="liverpoolfc" class="club-pill" onclick="selectClub('liverpoolfc', 'premierleague')">Liverpool FC</div>
+      <div id="chelseafc" class="club-pill" onclick="selectClub('chelseafc', 'premierleague')">Chelsea FC</div>
+      <div id="manchestercity" class="club-pill" onclick="selectClub('manchestercity', 'premierleague')">Manchester City</div>
+      <div id="manchesterunited" class="club-pill" onclick="selectClub('manchesterunited', 'premierleague')">Manchester United</div>
+    </div>
+
+    <div class="list-subcard club-group" id="list-laliga">
+      <div id="todas_laliga" class="club-pill active" onclick="selectClub('todas_laliga', 'laliga')">Todas</div>
+      <div id="realmadrid" class="club-pill" onclick="selectClub('realmadrid', 'laliga')">Real Madrid</div>
+      <div id="barcelona" class="club-pill" onclick="selectClub('barcelona', 'laliga')">Barcelona</div>
+    </div>
+
+    <div class="list-subcard club-group" id="list-liga01">
+      <div id="todas_liga01" class="club-pill active" onclick="selectClub('todas_liga01', 'liga01')">Todas</div>
+      <div id="parissaintgermain" class="club-pill" onclick="selectClub('parissaintgermain', 'liga01')">Paris Saint-Germain</div>
+      <div id="monacofc" class="club-pill" onclick="selectClub('monacofc', 'liga01')">Monaco FC</div>
+      <div id="olympiquelyonnais" class="club-pill" onclick="selectClub('olympiquelyonnais', 'liga01')">Olympique Lyonnais</div>
+      <div id="olympiquedemarseille" class="club-pill" onclick="selectClub('olympiquedemarseille', 'liga01')">O. Marseille</div>
+    </div>
+
+    <div class="list-subcard club-group" id="list-bundesliga">
+      <div id="todas_bundesliga" class="club-pill active" onclick="selectClub('todas_bundesliga', 'bundesliga')">Todas</div>
+      <div id="fcbayernmunchen" class="club-pill" onclick="selectClub('fcbayernmunchen', 'bundesliga')">FC Bayern München</div>
+      <div id="borussiadortmund" class="club-pill" onclick="selectClub('borussiadortmund', 'bundesliga')">Borussia Dortmund</div>
+    </div>
+
+  </section>
+
+  <!-- CONTENT -->
+  <div class="content">
+
+    <div class="results-header">
+      <div class="results-count" id="resultsCount"><span id="countNum">0</span> produtos</div>
+    </div>
+
+    <!-- BRASILEIRÃO: TODAS -->
+    <div class="list-shirts active" id="ct-todas" data-league="brasileirao" data-club="todas">
+
+      <div class="shirt-card" onclick="openModal(this)"
+        data-title="Camisa Corinthians III"
+        data-mod="2025/26 s/n Jogador Nike"
+        data-club-tag="Corinthians · Brasileirão"
+        data-img="./Imgs/corinthias/corinthias_3_2025.jpg"
+        data-imgs='["./Imgs/corinthias/corinthias_3_2025.jpg"]'
+        data-desc="Versão III da camiseta oficial do Sport Club Corinthians Paulista para a temporada 2025/26. Confeccionada pela Nike com tecnologia Dri-FIT para maior conforto e performance. Modelo sem numeração, ideal para torcedores que prezam pelo visual limpo e tradicional do Timão.">
+        <div class="shirt-img-wrap">
+          <img src="./Imgs/corinthias/corinthias_3_2025.jpg" alt="Camisa Corinthians III">
+          <div class="shirt-overlay"><button class="btn-view">Ver detalhes</button></div>
+        </div>
+        <div class="shirt-info">
+          <div class="shirt-title">Camisa Corinthians III</div>
+          <div class="shirt-mod">2025/26 s/n Jogador Nike</div>
+          <div class="shirt-price-row">
+            <div class="shirt-price">R$ 150</div>
+            <div class="shirt-price-label">Malha importada</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="shirt-card" onclick="openModal(this)"
+        data-title="Camisa Corinthians I Classic"
+        data-mod="2025/26 Classic s/n Nike"
+        data-club-tag="Corinthians · Brasileirão"
+        data-img="./Imgs/corinthias/corinthias_classic_2025.jpg"
+        data-imgs='["./Imgs/corinthias/corinthias_classic_2025.jpg"]'
+        data-desc="Camiseta clássica do Corinthians para a temporada 2025/26 em corte tradicional. Produção Nike com acabamento premium, sem número, perfeita para quem quer representar o Corinthians com estilo atemporal nas arquibancadas ou no dia a dia.">
+        <div class="shirt-img-wrap">
+          <img src="./Imgs/corinthias/corinthias_classic_2025.jpg" alt="Camisa Corinthians Classic">
+          <div class="shirt-overlay"><button class="btn-view">Ver detalhes</button></div>
+        </div>
+        <div class="shirt-info">
+          <div class="shirt-title">Camisa Corinthians I Classic</div>
+          <div class="shirt-mod">2025/26 Classic s/n Nike</div>
+          <div class="shirt-price-row">
+            <div class="shirt-price">R$ 150</div>
+            <div class="shirt-price-label">Malha importada</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="shirt-card" onclick="openModal(this)"
+        data-title="Camisa Corinthians Retrô"
+        data-mod="1990 Masc. s/n Kalunga"
+        data-club-tag="Corinthians · Coleção Retrô"
+        data-img="./Imgs/corinthias/corinthias_kalunga_1990.jpg"
+        data-imgs='["./Imgs/corinthias/corinthias_kalunga_1990.jpg"]'
+        data-desc="Icônica camisa retrô do Corinthians patrocinada pela Kalunga, resgatando o visual marcante dos anos 90. Uma peça de colecionador que homenageia a história do clube. Ideal para quem tem saudade de uma época de ouro do futebol brasileiro.">
+        <div class="shirt-img-wrap">
+          <img src="./Imgs/corinthias/corinthias_kalunga_1990.jpg" alt="Camisa Corinthians Retrô Kalunga">
+          <div class="shirt-overlay"><button class="btn-view">Ver detalhes</button></div>
+        </div>
+        <div class="shirt-info">
+          <div class="shirt-title">Camisa Corinthians Retrô</div>
+          <div class="shirt-mod">1990 Masc. s/n Kalunga</div>
+          <div class="shirt-price-row">
+            <div class="shirt-price">R$ 150</div>
+            <div class="shirt-price-label">Malha importada</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="shirt-card" onclick="openModal(this)"
+        data-title="Camisa Flamengo Clássica"
+        data-mod="2025/26 s/n Jogador"
+        data-club-tag="Flamengo · Brasileirão"
+        data-img="./Imgs/flamengo/flamengo_class_2025.jpg"
+        data-imgs='["./Imgs/flamengo/flamengo_class_2025.jpg"]'
+        data-desc="A camisa clássica do Clube de Regatas do Flamengo para a temporada 2025/26. Com as tradicionais listras rubro-negras, este modelo de jogador transmite toda a paixão da maior torcida do Brasil. Malha premium de alta durabilidade.">
+        <div class="shirt-img-wrap">
+          <img src="./Imgs/flamengo/flamengo_class_2025.jpg" alt="Camisa Flamengo Clássica">
+          <div class="shirt-overlay"><button class="btn-view">Ver detalhes</button></div>
+        </div>
+        <div class="shirt-info">
+          <div class="shirt-title">Camisa Flamengo Clássica</div>
+          <div class="shirt-mod">2025/26 s/n Jogador</div>
+          <div class="shirt-price-row">
+            <div class="shirt-price">R$ 150</div>
+            <div class="shirt-price-label">Malha importada</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="shirt-card" onclick="openModal(this)"
+        data-title="Camisa Palmeiras Branca"
+        data-mod="2025 Masc. c/nº Torcedor"
+        data-club-tag="Palmeiras · Brasileirão"
+        data-img="./Imgs/palmeiras/palmeiras_branca-2025.jpg"
+        data-imgs='["./Imgs/palmeiras/palmeiras_branca-2025.jpg"]'
+        data-desc="Versão branca alternativa do Palmeiras para 2025. Modelo masculino de torcedor com opção de numeração personalizada. Corte moderno com detalhes verde e branco, representando a elegância do Verdão fora de casa.">
+        <div class="shirt-img-wrap">
+          <img src="./Imgs/palmeiras/palmeiras_branca-2025.jpg" alt="Camisa Palmeiras Branca">
+          <div class="shirt-overlay"><button class="btn-view">Ver detalhes</button></div>
+        </div>
+        <div class="shirt-info">
+          <div class="shirt-title">Camisa Palmeiras Branca</div>
+          <div class="shirt-mod">2025 Masc. c/nº Torcedor</div>
+          <div class="shirt-price-row">
+            <div class="shirt-price">R$ 150</div>
+            <div class="shirt-price-label">Malha importada</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="shirt-card" onclick="openModal(this)"
+        data-title="Camisa Palmeiras Jersey"
+        data-mod="2026 Masc. c/nº Jogador"
+        data-club-tag="Palmeiras · Brasileirão"
+        data-img="./Imgs/palmeiras/palmeiras_jersey_2026.jpg"
+        data-imgs='["./Imgs/palmeiras/palmeiras_jersey_2026.jpg"]'
+        data-desc="Modelo jersey do Palmeiras para 2026, com numeração de jogador e acabamento profissional. Ideal para quem quer usar o uniforme igual ao dos atletas em campo. Tecido respirável e leve para máximo conforto.">
+        <div class="shirt-img-wrap">
+          <img src="./Imgs/palmeiras/palmeiras_jersey_2026.jpg" alt="Camisa Palmeiras Jersey">
+          <div class="shirt-overlay"><button class="btn-view">Ver detalhes</button></div>
+        </div>
+        <div class="shirt-info">
+          <div class="shirt-title">Camisa Palmeiras Jersey</div>
+          <div class="shirt-mod">2026 Masc. c/nº Jogador</div>
+          <div class="shirt-price-row">
+            <div class="shirt-price">R$ 150</div>
+            <div class="shirt-price-label">Malha importada</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="shirt-card" onclick="openModal(this)"
+        data-title="Camisa Palmeiras Retrô Parmalat"
+        data-mod="1996 c/nº — Edição Histórica"
+        data-club-tag="Palmeiras · Coleção Retrô"
+        data-img="./Imgs/palmeiras/palmeiras_parmalat_1996.jpg"
+        data-imgs='["./Imgs/palmeiras/palmeiras_parmalat_1996.jpg"]'
+        data-desc="Uma das camisas mais icônicas da história do Palmeiras: o uniforme Parmalat dos anos 90, época do Verdão campeão de tudo. Revisitar essa peça é celebrar os títulos que marcaram o clube. Produto especial para colecionadores e apaixonados pela história alviverde.">
+        <div class="shirt-img-wrap">
+          <img src="./Imgs/palmeiras/palmeiras_parmalat_1996.jpg" alt="Camisa Palmeiras Parmalat 1996">
+          <div class="shirt-overlay"><button class="btn-view">Ver detalhes</button></div>
+        </div>
+        <div class="shirt-info">
+          <div class="shirt-title">Camisa Palmeiras Retrô Parmalat</div>
+          <div class="shirt-mod">1996 c/nº — Edição Histórica</div>
+          <div class="shirt-price-row">
+            <div class="shirt-price">R$ 150</div>
+            <div class="shirt-price-label">Malha importada</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="shirt-card" onclick="openModal(this)"
+        data-title="Camisa Santos Azul"
+        data-mod="2025/26 s/n Torcedor"
+        data-club-tag="Santos · Brasileirão"
+        data-img="./Imgs/santos/santos_azul_2025.jpg"
+        data-imgs='["./Imgs/santos/santos_azul_2025.jpg"]'
+        data-desc="Uniforme alternativo azul do Santos FC para 2025/26, um modelo diferenciado que quebra a tradição do alvinegro praiano. Edição especial para torcedores que gostam de um visual ousado e elegante ao apoiar o Peixe.">
+        <div class="shirt-img-wrap">
+          <img src="./Imgs/santos/santos_azul_2025.jpg" alt="Camisa Santos Azul">
+          <div class="shirt-overlay"><button class="btn-view">Ver detalhes</button></div>
+        </div>
+        <div class="shirt-info">
+          <div class="shirt-title">Camisa Santos Azul</div>
+          <div class="shirt-mod">2025/26 s/n Torcedor</div>
+          <div class="shirt-price-row">
+            <div class="shirt-price">R$ 150</div>
+            <div class="shirt-price-label">Malha importada</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="shirt-card" onclick="openModal(this)"
+        data-title="Camisa Santos Branca"
+        data-mod="2025/26 s/n Torcedor"
+        data-club-tag="Santos · Brasileirão"
+        data-img="./Imgs/santos/santos_branca_2025.jpg"
+        data-imgs='["./Imgs/santos/santos_branca_2025.jpg"]'
+        data-desc="O clássico uniforme principal do Santos FC para 2025/26, mantendo a tradição da camisa branca que encantou gerações. Modelo de torcedor com corte moderno, confortável para qualquer ocasião.">
+        <div class="shirt-img-wrap">
+          <img src="./Imgs/santos/santos_branca_2025.jpg" alt="Camisa Santos Branca">
+          <div class="shirt-overlay"><button class="btn-view">Ver detalhes</button></div>
+        </div>
+        <div class="shirt-info">
+          <div class="shirt-title">Camisa Santos Branca</div>
+          <div class="shirt-mod">2025/26 s/n Torcedor</div>
+          <div class="shirt-price-row">
+            <div class="shirt-price">R$ 150</div>
+            <div class="shirt-price-label">Malha importada</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="shirt-card" onclick="openModal(this)"
+        data-title="Camisa Santos Preta"
+        data-mod="2025/26 s/n Torcedor"
+        data-club-tag="Santos · Brasileirão"
+        data-img="./Imgs/santos/santos_preta_2025.jpg"
+        data-imgs='["./Imgs/santos/santos_preta_2025.jpg"]'
+        data-desc="Uniforme preto alternativo do Santos FC para a temporada 2025/26. Visual sombrio e moderno que contrasta com a identidade tradicional do clube. Peça exclusiva para quem quer se destacar nas arquibancadas da Vila Belmiro.">
+        <div class="shirt-img-wrap">
+          <img src="./Imgs/santos/santos_preta_2025.jpg" alt="Camisa Santos Preta">
+          <div class="shirt-overlay"><button class="btn-view">Ver detalhes</button></div>
+        </div>
+        <div class="shirt-info">
+          <div class="shirt-title">Camisa Santos Preta</div>
+          <div class="shirt-mod">2025/26 s/n Torcedor</div>
+          <div class="shirt-price-row">
+            <div class="shirt-price">R$ 150</div>
+            <div class="shirt-price-label">Malha importada</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="shirt-card" onclick="openModal(this)"
+        data-title="Camisa São Paulo 2025 Comemorativa"
+        data-mod="2025 s/n Comemorativa"
+        data-club-tag="São Paulo · Brasileirão"
+        data-img="./Imgs/saoPaulo/saopaulo_preta_2025.jpg"
+        data-imgs='["./Imgs/saoPaulo/saopaulo_preta_2025.jpg"]'
+        data-desc="Edição comemorativa especial do São Paulo Futebol Clube para 2025. Design exclusivo em tom escuro com detalhes que celebram a história do Tricolor Paulista. Uma peça única para marcar uma data especial na trajetória do clube do Morumbi.">
+        <div class="shirt-img-wrap">
+          <img src="./Imgs/saoPaulo/saopaulo_preta_2025.jpg" alt="Camisa São Paulo Comemorativa">
+          <div class="shirt-overlay"><button class="btn-view">Ver detalhes</button></div>
+        </div>
+        <div class="shirt-info">
+          <div class="shirt-title">Camisa São Paulo Comemorativa</div>
+          <div class="shirt-mod">2025 s/n Edição Especial</div>
+          <div class="shirt-price-row">
+            <div class="shirt-price">R$ 150</div>
+            <div class="shirt-price-label">Malha importada</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="shirt-card" onclick="openModal(this)"
+        data-title="Camisa São Paulo Clássica"
+        data-mod="2025 s/n Clássica"
+        data-club-tag="São Paulo · Brasileirão"
+        data-img="./Imgs/saoPaulo/saopaulo_classic_2025.jpg"
+        data-imgs='["./Imgs/saoPaulo/saopaulo_classic_2025.jpg"]'
+        data-desc="O uniforme clássico do São Paulo FC para 2025, com as tradicionais listras verticais tricolor. Um símbolo de identidade e orgulho para todos os são-paulinos. Acabamento premium e corte elegante para uso no dia a dia.">
+        <div class="shirt-img-wrap">
+          <img src="./Imgs/saoPaulo/saopaulo_classic_2025.jpg" alt="Camisa São Paulo Clássica">
+          <div class="shirt-overlay"><button class="btn-view">Ver detalhes</button></div>
+        </div>
+        <div class="shirt-info">
+          <div class="shirt-title">Camisa São Paulo Clássica</div>
+          <div class="shirt-mod">2025 s/n Clássica</div>
+          <div class="shirt-price-row">
+            <div class="shirt-price">R$ 150</div>
+            <div class="shirt-price-label">Malha importada</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="shirt-card" onclick="openModal(this)"
+        data-title="Camisa São Paulo Tradicional"
+        data-mod="2025 s/n Tradicional"
+        data-club-tag="São Paulo · Brasileirão"
+        data-img="./Imgs/saoPaulo/saopaulo_branca_2025.jpg"
+        data-imgs='["./Imgs/saoPaulo/saopaulo_branca_2025.jpg"]'
+        data-desc="Versão branca tradicional do São Paulo FC para 2025. Uniforme limpo e elegante, fiel à identidade visual do clube. Perfeito para o dia a dia ou para ir ao Morumbi apoiar o Tricolor com estilo.">
+        <div class="shirt-img-wrap">
+          <img src="./Imgs/saoPaulo/saopaulo_branca_2025.jpg" alt="Camisa São Paulo Branca">
+          <div class="shirt-overlay"><button class="btn-view">Ver detalhes</button></div>
+        </div>
+        <div class="shirt-info">
+          <div class="shirt-title">Camisa São Paulo Branca</div>
+          <div class="shirt-mod">2025 s/n Tradicional</div>
+          <div class="shirt-price-row">
+            <div class="shirt-price">R$ 150</div>
+            <div class="shirt-price-label">Malha importada</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- CORINTHIANS -->
+    <div class="list-shirts" id="ct-corinthias" data-league="brasileirao" data-club="corinthias">
+      <div class="shirt-card" onclick="openModal(this)"
+        data-title="Camisa Corinthians III"
+        data-mod="2025/26 s/n Jogador Nike"
+        data-club-tag="Corinthians · Brasileirão"
+        data-img="./Imgs/corinthias/corinthias_3_2025.jpg"
+        data-imgs='["./Imgs/corinthias/corinthias_3_2025.jpg"]'
+        data-desc="Versão III da camiseta oficial do Sport Club Corinthians Paulista para a temporada 2025/26. Confeccionada pela Nike com tecnologia Dri-FIT para maior conforto e performance. Modelo sem numeração, ideal para torcedores que prezam pelo visual limpo e tradicional do Timão.">
+        <div class="shirt-img-wrap">
+          <img src="./Imgs/corinthias/corinthias_3_2025.jpg" alt="Camisa Corinthians III">
+          <div class="shirt-overlay"><button class="btn-view">Ver detalhes</button></div>
+        </div>
+        <div class="shirt-info">
+          <div class="shirt-title">Camisa Corinthians III</div>
+          <div class="shirt-mod">2025/26 s/n Jogador Nike</div>
+          <div class="shirt-price-row">
+            <div class="shirt-price">R$ 150</div>
+            <div class="shirt-price-label">Malha importada</div>
+          </div>
+        </div>
+      </div>
+      <div class="shirt-card" onclick="openModal(this)"
+        data-title="Camisa Corinthians I Classic"
+        data-mod="2025/26 Classic s/n Nike"
+        data-club-tag="Corinthians · Brasileirão"
+        data-img="./Imgs/corinthias/corinthias_classic_2025.jpg"
+        data-imgs='["./Imgs/corinthias/corinthias_classic_2025.jpg"]'
+        data-desc="Camiseta clássica do Corinthians para a temporada 2025/26 em corte tradicional. Produção Nike com acabamento premium, sem número, perfeita para quem quer representar o Corinthians com estilo atemporal nas arquibancadas ou no dia a dia.">
+        <div class="shirt-img-wrap">
+          <img src="./Imgs/corinthias/corinthias_classic_2025.jpg" alt="Camisa Corinthians Classic">
+          <div class="shirt-overlay"><button class="btn-view">Ver detalhes</button></div>
+        </div>
+        <div class="shirt-info">
+          <div class="shirt-title">Camisa Corinthians I Classic</div>
+          <div class="shirt-mod">2025/26 Classic s/n Nike</div>
+          <div class="shirt-price-row">
+            <div class="shirt-price">R$ 150</div>
+            <div class="shirt-price-label">Malha importada</div>
+          </div>
+        </div>
+      </div>
+      <div class="shirt-card" onclick="openModal(this)"
+        data-title="Camisa Corinthians Retrô"
+        data-mod="1990 Masc. s/n Kalunga"
+        data-club-tag="Corinthians · Coleção Retrô"
+        data-img="./Imgs/corinthias/corinthias_kalunga_1990.jpg"
+        data-imgs='["./Imgs/corinthias/corinthias_kalunga_1990.jpg"]'
+        data-desc="Icônica camisa retrô do Corinthians patrocinada pela Kalunga, resgatando o visual marcante dos anos 90. Uma peça de colecionador que homenageia a história do clube. Ideal para quem tem saudade de uma época de ouro do futebol brasileiro.">
+        <div class="shirt-img-wrap">
+          <img src="./Imgs/corinthias/corinthias_kalunga_1990.jpg" alt="Camisa Corinthians Retrô">
+          <div class="shirt-overlay"><button class="btn-view">Ver detalhes</button></div>
+        </div>
+        <div class="shirt-info">
+          <div class="shirt-title">Camisa Corinthians Retrô</div>
+          <div class="shirt-mod">1990 Masc. s/n Kalunga</div>
+          <div class="shirt-price-row">
+            <div class="shirt-price">R$ 150</div>
+            <div class="shirt-price-label">Malha importada</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FLAMENGO -->
+    <div class="list-shirts" id="ct-flamengo" data-league="brasileirao" data-club="flamengo">
+      <div class="shirt-card" onclick="openModal(this)"
+        data-title="Camisa Flamengo Clássica"
+        data-mod="2025/26 s/n Jogador"
+        data-club-tag="Flamengo · Brasileirão"
+        data-img="./Imgs/flamengo/flamengo_class_2025.jpg"
+        data-imgs='["./Imgs/flamengo/flamengo_class_2025.jpg"]'
+        data-desc="A camisa clássica do Clube de Regatas do Flamengo para a temporada 2025/26. Com as tradicionais listras rubro-negras, este modelo de jogador transmite toda a paixão da maior torcida do Brasil. Malha premium de alta durabilidade.">
+        <div class="shirt-img-wrap">
+          <img src="./Imgs/flamengo/flamengo_class_2025.jpg" alt="Camisa Flamengo Clássica">
+          <div class="shirt-overlay"><button class="btn-view">Ver detalhes</button></div>
+        </div>
+        <div class="shirt-info">
+          <div class="shirt-title">Camisa Flamengo Clássica</div>
+          <div class="shirt-mod">2025/26 s/n Jogador</div>
+          <div class="shirt-price-row">
+            <div class="shirt-price">R$ 150</div>
+            <div class="shirt-price-label">Malha importada</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SANTOS -->
+    <div class="list-shirts" id="ct-santos" data-league="brasileirao" data-club="santos">
+      <div class="shirt-card" onclick="openModal(this)"
+        data-title="Camisa Santos Azul"
+        data-mod="2025/26 s/n Torcedor"
+        data-club-tag="Santos · Brasileirão"
+        data-img="./Imgs/santos/santos_azul_2025.jpg"
+        data-imgs='["./Imgs/santos/santos_azul_2025.jpg"]'
+        data-desc="Uniforme alternativo azul do Santos FC para 2025/26. Edição especial para torcedores que gostam de um visual ousado e elegante ao apoiar o Peixe.">
+        <div class="shirt-img-wrap">
+          <img src="./Imgs/santos/santos_azul_2025.jpg" alt="Camisa Santos Azul">
+          <div class="shirt-overlay"><button class="btn-view">Ver detalhes</button></div>
+        </div>
+        <div class="shirt-info">
+          <div class="shirt-title">Camisa Santos Azul</div>
+          <div class="shirt-mod">2025/26 s/n Torcedor</div>
+          <div class="shirt-price-row">
+            <div class="shirt-price">R$ 150</div>
+            <div class="shirt-price-label">Malha importada</div>
+          </div>
+        </div>
+      </div>
+      <div class="shirt-card" onclick="openModal(this)"
+        data-title="Camisa Santos Branca"
+        data-mod="2025/26 s/n Torcedor"
+        data-club-tag="Santos · Brasileirão"
+        data-img="./Imgs/santos/santos_branca_2025.jpg"
+        data-imgs='["./Imgs/santos/santos_branca_2025.jpg"]'
+        data-desc="O clássico uniforme principal do Santos FC para 2025/26. Modelo de torcedor com corte moderno, confortável para qualquer ocasião.">
+        <div class="shirt-img-wrap">
+          <img src="./Imgs/santos/santos_branca_2025.jpg" alt="Camisa Santos Branca">
+          <div class="shirt-overlay"><button class="btn-view">Ver detalhes</button></div>
+        </div>
+        <div class="shirt-info">
+          <div class="shirt-title">Camisa Santos Branca</div>
+          <div class="shirt-mod">2025/26 s/n Torcedor</div>
+          <div class="shirt-price-row">
+            <div class="shirt-price">R$ 150</div>
+            <div class="shirt-price-label">Malha importada</div>
+          </div>
+        </div>
+      </div>
+      <div class="shirt-card" onclick="openModal(this)"
+        data-title="Camisa Santos Preta"
+        data-mod="2025/26 s/n Torcedor"
+        data-club-tag="Santos · Brasileirão"
+        data-img="./Imgs/santos/santos_preta_2025.jpg"
+        data-imgs='["./Imgs/santos/santos_preta_2025.jpg"]'
+        data-desc="Uniforme preto alternativo do Santos FC para 2025/26. Visual sombrio e moderno que contrasta com a identidade tradicional do clube.">
+        <div class="shirt-img-wrap">
+          <img src="./Imgs/santos/santos_preta_2025.jpg" alt="Camisa Santos Preta">
+          <div class="shirt-overlay"><button class="btn-view">Ver detalhes</button></div>
+        </div>
+        <div class="shirt-info">
+          <div class="shirt-title">Camisa Santos Preta</div>
+          <div class="shirt-mod">2025/26 s/n Torcedor</div>
+          <div class="shirt-price-row">
+            <div class="shirt-price">R$ 150</div>
+            <div class="shirt-price-label">Malha importada</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PALMEIRAS -->
+    <div class="list-shirts" id="ct-palmeiras" data-league="brasileirao" data-club="palmeiras">
+      <div class="shirt-card" onclick="openModal(this)"
+        data-title="Camisa Palmeiras Branca"
+        data-mod="2025 Masc. c/nº Torcedor"
+        data-club-tag="Palmeiras · Brasileirão"
+        data-img="./Imgs/palmeiras/palmeiras_branca-2025.jpg"
+        data-imgs='["./Imgs/palmeiras/palmeiras_branca-2025.jpg"]'
+        data-desc="Versão branca alternativa do Palmeiras para 2025. Modelo masculino de torcedor com opção de numeração personalizada.">
+        <div class="shirt-img-wrap">
+          <img src="./Imgs/palmeiras/palmeiras_branca-2025.jpg" alt="Camisa Palmeiras Branca">
+          <div class="shirt-overlay"><button class="btn-view">Ver detalhes</button></div>
+        </div>
+        <div class="shirt-info">
+          <div class="shirt-title">Camisa Palmeiras Branca</div>
+          <div class="shirt-mod">2025 Masc. c/nº Torcedor</div>
+          <div class="shirt-price-row">
+            <div class="shirt-price">R$ 150</div>
+            <div class="shirt-price-label">Malha importada</div>
+          </div>
+        </div>
+      </div>
+      <div class="shirt-card" onclick="openModal(this)"
+        data-title="Camisa Palmeiras Jersey"
+        data-mod="2026 Masc. c/nº Jogador"
+        data-club-tag="Palmeiras · Brasileirão"
+        data-img="./Imgs/palmeiras/palmeiras_jersey_2026.jpg"
+        data-imgs='["./Imgs/palmeiras/palmeiras_jersey_2026.jpg"]'
+        data-desc="Modelo jersey do Palmeiras para 2026 com numeração de jogador e acabamento profissional.">
+        <div class="shirt-img-wrap">
+          <img src="./Imgs/palmeiras/palmeiras_jersey_2026.jpg" alt="Camisa Palmeiras Jersey">
+          <div class="shirt-overlay"><button class="btn-view">Ver detalhes</button></div>
+        </div>
+        <div class="shirt-info">
+          <div class="shirt-title">Camisa Palmeiras Jersey</div>
+          <div class="shirt-mod">2026 Masc. c/nº Jogador</div>
+          <div class="shirt-price-row">
+            <div class="shirt-price">R$ 150</div>
+            <div class="shirt-price-label">Malha importada</div>
+          </div>
+        </div>
+      </div>
+      <div class="shirt-card" onclick="openModal(this)"
+        data-title="Camisa Palmeiras Retrô Parmalat"
+        data-mod="1996 c/nº — Edição Histórica"
+        data-club-tag="Palmeiras · Coleção Retrô"
+        data-img="./Imgs/palmeiras/palmeiras_parmalat_1996.jpg"
+        data-imgs='["./Imgs/palmeiras/palmeiras_parmalat_1996.jpg"]'
+        data-desc="Uma das camisas mais icônicas da história do Palmeiras: o uniforme Parmalat dos anos 90. Produto especial para colecionadores.">
+        <div class="shirt-img-wrap">
+          <img src="./Imgs/palmeiras/palmeiras_parmalat_1996.jpg" alt="Camisa Palmeiras Parmalat">
+          <div class="shirt-overlay"><button class="btn-view">Ver detalhes</button></div>
+        </div>
+        <div class="shirt-info">
+          <div class="shirt-title">Camisa Palmeiras Retrô Parmalat</div>
+          <div class="shirt-mod">1996 c/nº — Edição Histórica</div>
+          <div class="shirt-price-row">
+            <div class="shirt-price">R$ 150</div>
+            <div class="shirt-price-label">Malha importada</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SÃO PAULO -->
+    <div class="list-shirts" id="ct-saopaulo" data-league="brasileirao" data-club="saopaulo">
+      <div class="shirt-card" onclick="openModal(this)"
+        data-title="Camisa São Paulo Comemorativa"
+        data-mod="2025 s/n Edição Especial"
+        data-club-tag="São Paulo · Brasileirão"
+        data-img="./Imgs/saoPaulo/saopaulo_preta_2025.jpg"
+        data-imgs='["./Imgs/saoPaulo/saopaulo_preta_2025.jpg"]'
+        data-desc="Edição comemorativa especial do São Paulo FC para 2025. Design exclusivo em tom escuro com detalhes que celebram a história do Tricolor Paulista.">
+        <div class="shirt-img-wrap">
+          <img src="./Imgs/saoPaulo/saopaulo_preta_2025.jpg" alt="Camisa São Paulo Comemorativa">
+          <div class="shirt-overlay"><button class="btn-view">Ver detalhes</button></div>
+        </div>
+        <div class="shirt-info">
+          <div class="shirt-title">Camisa São Paulo Comemorativa</div>
+          <div class="shirt-mod">2025 s/n Edição Especial</div>
+          <div class="shirt-price-row">
+            <div class="shirt-price">R$ 150</div>
+            <div class="shirt-price-label">Malha importada</div>
+          </div>
+        </div>
+      </div>
+      <div class="shirt-card" onclick="openModal(this)"
+        data-title="Camisa São Paulo Clássica"
+        data-mod="2025 s/n Clássica"
+        data-club-tag="São Paulo · Brasileirão"
+        data-img="./Imgs/saoPaulo/saopaulo_classic_2025.jpg"
+        data-imgs='["./Imgs/saoPaulo/saopaulo_classic_2025.jpg"]'
+        data-desc="O uniforme clássico do São Paulo FC para 2025, com as tradicionais listras verticais tricolor.">
+        <div class="shirt-img-wrap">
+          <img src="./Imgs/saoPaulo/saopaulo_classic_2025.jpg" alt="Camisa São Paulo Clássica">
+          <div class="shirt-overlay"><button class="btn-view">Ver detalhes</button></div>
+        </div>
+        <div class="shirt-info">
+          <div class="shirt-title">Camisa São Paulo Clássica</div>
+          <div class="shirt-mod">2025 s/n Clássica</div>
+          <div class="shirt-price-row">
+            <div class="shirt-price">R$ 150</div>
+            <div class="shirt-price-label">Malha importada</div>
+          </div>
+        </div>
+      </div>
+      <div class="shirt-card" onclick="openModal(this)"
+        data-title="Camisa São Paulo Branca"
+        data-mod="2025 s/n Tradicional"
+        data-club-tag="São Paulo · Brasileirão"
+        data-img="./Imgs/saoPaulo/saopaulo_branca_2025.jpg"
+        data-imgs='["./Imgs/saoPaulo/saopaulo_branca_2025.jpg"]'
+        data-desc="Versão branca tradicional do São Paulo FC para 2025. Uniforme limpo e elegante, fiel à identidade visual do clube.">
+        <div class="shirt-img-wrap">
+          <img src="./Imgs/saoPaulo/saopaulo_branca_2025.jpg" alt="Camisa São Paulo Branca">
+          <div class="shirt-overlay"><button class="btn-view">Ver detalhes</button></div>
+        </div>
+        <div class="shirt-info">
+          <div class="shirt-title">Camisa São Paulo Branca</div>
+          <div class="shirt-mod">2025 s/n Tradicional</div>
+          <div class="shirt-price-row">
+            <div class="shirt-price">R$ 150</div>
+            <div class="shirt-price-label">Malha importada</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LA LIGA: TODAS -->
+    <div class="list-shirts" id="ct-todas_laliga" data-league="laliga" data-club="todas_laliga">
+      <div class="shirt-card" onclick="openModal(this)"
+        data-title="Camisa Barcelona Pro"
+        data-mod="2025/26 s/n Torcedor Nike"
+        data-club-tag="FC Barcelona · La Liga"
+        data-img="./Imgs/barcelona/barcelona_spot_2025_.jpg"
+        data-imgs='["./Imgs/barcelona/barcelona_spot_2025_.jpg"]'
+        data-desc="Camisa oficial do FC Barcelona para 2025/26. As icônicas listras blaugrana em versão de torcedor Nike, para você representar o Barça com toda a elegância e tradição do clube catalão.">
+        <div class="shirt-img-wrap">
+          <img src="./Imgs/barcelona/barcelona_spot_2025_.jpg" alt="Camisa Barcelona Pro">
+          <div class="shirt-overlay"><button class="btn-view">Ver detalhes</button></div>
+        </div>
+        <div class="shirt-info">
+          <div class="shirt-title">Camisa Barcelona Pro</div>
+          <div class="shirt-mod">2025/26 s/n Torcedor Nike</div>
+          <div class="shirt-price-row">
+            <div class="shirt-price">R$ 150</div>
+            <div class="shirt-price-label">Malha importada</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BARCELONA -->
+    <div class="list-shirts" id="ct-barcelona" data-league="laliga" data-club="barcelona">
+      <div class="shirt-card" onclick="openModal(this)"
+        data-title="Camisa Barcelona Pro"
+        data-mod="2025/26 s/n Torcedor Nike"
+        data-club-tag="FC Barcelona · La Liga"
+        data-img="./Imgs/barcelona/barcelona_spot_2025_.jpg"
+        data-imgs='["./Imgs/barcelona/barcelona_spot_2025_.jpg"]'
+        data-desc="Camisa oficial do FC Barcelona para 2025/26. As icônicas listras blaugrana em versão de torcedor Nike.">
+        <div class="shirt-img-wrap">
+          <img src="./Imgs/barcelona/barcelona_spot_2025_.jpg" alt="Camisa Barcelona Pro">
+          <div class="shirt-overlay"><button class="btn-view">Ver detalhes</button></div>
+        </div>
+        <div class="shirt-info">
+          <div class="shirt-title">Camisa Barcelona Pro</div>
+          <div class="shirt-mod">2025/26 s/n Torcedor Nike</div>
+          <div class="shirt-price-row">
+            <div class="shirt-price">R$ 150</div>
+            <div class="shirt-price-label">Malha importada</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- EMPTY LEAGUE PLACEHOLDERS -->
+    <div class="list-shirts" id="ct-todas_premierleague" data-league="premierleague" data-club="todas_premierleague">
+      <div style="grid-column:1/-1;color:var(--text-muted);font-size:0.85rem;padding:40px 0;text-align:center;">Em breve — novos produtos chegando 🔜</div>
+    </div>
+    <div class="list-shirts" id="ct-liverpoolfc" data-league="premierleague" data-club="liverpoolfc"></div>
+    <div class="list-shirts" id="ct-chelseafc" data-league="premierleague" data-club="chelseafc"></div>
+    <div class="list-shirts" id="ct-manchestercity" data-league="premierleague" data-club="manchestercity"></div>
+    <div class="list-shirts" id="ct-manchesterunited" data-league="premierleague" data-club="manchesterunited"></div>
+
+    <div class="list-shirts" id="ct-realmadrid" data-league="laliga" data-club="realmadrid"></div>
+
+    <div class="list-shirts" id="ct-todas_liga01" data-league="liga01" data-club="todas_liga01">
+      <div style="grid-column:1/-1;color:var(--text-muted);font-size:0.85rem;padding:40px 0;text-align:center;">Em breve — novos produtos chegando 🔜</div>
+    </div>
+    <div class="list-shirts" id="ct-parissaintgermain" data-league="liga01" data-club="parissaintgermain"></div>
+    <div class="list-shirts" id="ct-monacofc" data-league="liga01" data-club="monacofc"></div>
+    <div class="list-shirts" id="ct-olympiquelyonnais" data-league="liga01" data-club="olympiquelyonnais"></div>
+    <div class="list-shirts" id="ct-olympiquedemarseille" data-league="liga01" data-club="olympiquedemarseille"></div>
+
+    <div class="list-shirts" id="ct-todas_bundesliga" data-league="bundesliga" data-club="todas_bundesliga">
+      <div style="grid-column:1/-1;color:var(--text-muted);font-size:0.85rem;padding:40px 0;text-align:center;">Em breve — novos produtos chegando 🔜</div>
+    </div>
+    <div class="list-shirts" id="ct-fcbayernmunchen" data-league="bundesliga" data-club="fcbayernmunchen"></div>
+    <div class="list-shirts" id="ct-borussiadortmund" data-league="bundesliga" data-club="borussiadortmund"></div>
+
+  </div>
+
+  <!-- MODAL -->
+  <div class="modal-overlay" id="modalOverlay" onclick="closeModalOnBg(event)">
+    <div class="modal" id="modal">
+
+      <div class="modal-images">
+        <img class="modal-main-img" id="modalMainImg" src="" alt="">
+        <div class="modal-thumbs" id="modalThumbs"></div>
+      </div>
+
+      <div class="modal-details" style="position:relative;">
+        <div class="modal-close" onclick="closeModal()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
+        </div>
+
+        <div class="modal-tag" id="modalTag">Brasileirão</div>
+        <div class="modal-title" id="modalTitle">Título do Produto</div>
+        <div class="modal-subtitle" id="modalSubtitle">Subtítulo</div>
+
+        <div class="modal-divider"></div>
+
+        <div class="modal-desc" id="modalDesc">Descrição aqui.</div>
+
+        <div class="price-block">
+          <div class="price-main-label">Preço — Malha Importada</div>
+          <div class="price-main">R$ 150</div>
+          <div class="price-alt">
+            <strong>Malha Nacional disponível por R$ 80</strong><br>
+            Entre em contato para solicitar nesta opção com desconto.
+          </div>
+        </div>
+
+        <div class="modal-cta">
+          <button class="btn-primary" onclick="pedirCamisa()">📲 Pedir agora</button>
+          <button class="btn-secondary" onclick="closeModal()">Fechar</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ---- LEAGUE & CLUB NAVIGATION ----
+
+    let currentLeague = 'brasileirao';
+
+    function selectLeague(leagueId, defaultClub) {
+      // update active card
+      document.querySelectorAll('.league-card').forEach(c => c.classList.remove('active'));
+      document.getElementById(leagueId).classList.add('active');
+
+      // hide all club groups
+      document.querySelectorAll('.club-group').forEach(g => {
+        g.classList.remove('active');
+        g.style.display = 'none';
+      });
+
+      // show correct club group
+      const group = document.getElementById('list-' + leagueId);
+      if (group) {
+        group.classList.add('active');
+        group.style.display = 'flex';
+      }
+
+      currentLeague = leagueId;
+
+      // reset club pills active
+      if (group) {
+        group.querySelectorAll('.club-pill').forEach(p => p.classList.remove('active'));
+        const firstPill = group.querySelector('.club-pill');
+        if (firstPill) firstPill.classList.add('active');
+      }
+
+      // show correct content
+      showContent(defaultClub);
+    }
+
+    function selectClub(clubId) {
+      // update pill
+      document.querySelectorAll('.club-group.active .club-pill').forEach(p => p.classList.remove('active'));
+      const pill = document.getElementById(clubId);
+      if (pill) pill.classList.add('active');
+
+      showContent(clubId);
+    }
+
+    function showContent(clubId) {
+      document.querySelectorAll('.list-shirts').forEach(l => l.classList.remove('active'));
+      const target = document.getElementById('ct-' + clubId);
+      if (target) target.classList.add('active');
+      updateCount();
+    }
+
+    function updateCount() {
+      const visible = document.querySelector('.list-shirts.active');
+      let count = 0;
+      if (visible) {
+        count = visible.querySelectorAll('.shirt-card').length;
+      }
+      document.getElementById('countNum').textContent = count;
+    }
+
+    // ---- SEARCH ----
+    function toggleSearch() {
+      const bar = document.getElementById('searchBar');
+      bar.classList.toggle('open');
+      if (bar.classList.contains('open')) {
+        document.getElementById('searchInput').focus();
+      }
+    }
+
+    function filterSearch(val) {
+      const q = val.toLowerCase().trim();
+
+      if (!q) {
+        // Restaura a visualização normal
+        document.querySelectorAll('.list-shirts').forEach(l => {
+          l.style.display = '';
+          l.querySelectorAll('.shirt-card').forEach(c => c.style.display = '');
+        });
+        return;
+      }
+
+      // Busca apenas nos containers "todas" de cada liga para evitar duplicatas
+      const todosList = document.querySelectorAll('.list-shirts[data-club^="todas"]');
+
+      document.querySelectorAll('.list-shirts').forEach(l => {
+        l.classList.remove('active');
+        l.style.display = 'none';
+      });
+
+      todosList.forEach(l => {
+        let hasVisible = false;
+        l.querySelectorAll('.shirt-card').forEach(c => {
+          const title = (c.dataset.title   || '').toLowerCase();
+          const mod   = (c.dataset.mod     || '').toLowerCase();
+          const tag   = (c.dataset.clubTag || '').toLowerCase();
+          const match = title.includes(q) || mod.includes(q) || tag.includes(q);
+          c.style.display = match ? '' : 'none';
+          if (match) hasVisible = true;
+        });
+        if (hasVisible) {
+          l.classList.add('active');
+          l.style.display = '';
+        }
+      });
+    }
+
+    // ---- MODAL ----
+    let currentImgs = [];
+    let currentImgIndex = 0;
+
+    function openModal(el) {
+      const title = el.dataset.title;
+      const mod = el.dataset.mod;
+      const tag = el.dataset.clubTag || '';
+      const img = el.dataset.img;
+      const desc = el.dataset.desc;
+      let imgs = [];
+      try { imgs = JSON.parse(el.dataset.imgs); } catch(e) { imgs = [img]; }
+
+      currentImgs = imgs;
+      currentImgIndex = 0;
+
+      document.getElementById('modalTitle').textContent = title;
+      document.getElementById('modalSubtitle').textContent = mod;
+      document.getElementById('modalTag').textContent = tag;
+      document.getElementById('modalDesc').textContent = desc;
+      document.getElementById('modalMainImg').src = imgs[0];
+      document.getElementById('modalMainImg').alt = title;
+
+      // thumbs
+      const thumbsEl = document.getElementById('modalThumbs');
+      thumbsEl.innerHTML = '';
+      imgs.forEach((src, i) => {
+        const t = document.createElement('img');
+        t.src = src;
+        t.className = 'modal-thumb' + (i === 0 ? ' active' : '');
+        t.onclick = () => selectThumb(i);
+        thumbsEl.appendChild(t);
+      });
+
+      // show only if more than 1 img
+      thumbsEl.style.display = imgs.length > 1 ? 'flex' : 'none';
+
+      document.getElementById('modalOverlay').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function selectThumb(i) {
+      currentImgIndex = i;
+      document.getElementById('modalMainImg').src = currentImgs[i];
+      document.querySelectorAll('.modal-thumb').forEach((t, idx) => {
+        t.classList.toggle('active', idx === i);
+      });
+    }
+
+    function closeModal() {
+      document.getElementById('modalOverlay').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    function closeModalOnBg(e) {
+      if (e.target === document.getElementById('modalOverlay')) closeModal();
+    }
+
+    function pedirCamisa() {
+      const title = document.getElementById('modalTitle').textContent;
+      const msg = encodeURIComponent(`Olá! Tenho interesse na camisa: *${title}*. Pode me dar mais informações?`);
+      window.open(`https://wa.me/?text=${msg}`, '_blank');
+    }
+
+    // ---- SLIDER DRAG ----
+    function makeSlider(el) {
+      let isDown = false, startX, scrollLeft, vel = 0, raf;
+      el.addEventListener('mousedown', e => {
+        isDown = true; startX = e.pageX; scrollLeft = el.scrollLeft; cancelAnimationFrame(raf);
+      });
+      el.addEventListener('mouseleave', () => isDown = false);
+      el.addEventListener('mouseup', () => { isDown = false; inertia(); });
+      el.addEventListener('mousemove', e => {
+        if (!isDown) return; e.preventDefault();
+        const walk = e.pageX - startX; vel = walk; el.scrollLeft = scrollLeft - walk;
+      });
+      el.addEventListener('wheel', e => { e.preventDefault(); el.scrollLeft += e.deltaY; }, { passive: false });
+      function inertia() { vel *= 0.9; el.scrollLeft -= vel; if (Math.abs(vel) > 0.5) raf = requestAnimationFrame(inertia); }
+    }
+
+    makeSlider(document.getElementById('leagueSlider'));
+    document.querySelectorAll('.list-subcard').forEach(makeSlider);
+
+    // ---- KEYBOARD ----
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+    // Init count
+    updateCount();
+  </script>
+
+</body>
+</html>
