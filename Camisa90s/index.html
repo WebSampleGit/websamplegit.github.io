@@ -72,6 +72,7 @@
       height: 44px;
       width: auto;
       display: block;
+      border-radius: 5px;
     }
 
     .logo-brand {
@@ -483,6 +484,7 @@
       grid-template-columns: 1fr 1fr;
       transform: translateY(20px) scale(0.97);
       transition: transform 0.3s cubic-bezier(.4,0,.2,1);
+      position: relative;
     }
 
     .modal-overlay.open .modal { transform: translateY(0) scale(1); }
@@ -524,7 +526,7 @@
     .modal-thumb:hover { border-color: var(--border-accent); }
 
     .modal-details {
-      padding: 28px 24px;
+      padding: 20px 20px 10px 20px;
       display: flex;
       flex-direction: column;
       position: relative;
@@ -567,7 +569,7 @@
 
     .modal-title {
       font-family: 'Anton', sans-serif;
-      font-size: 1.9rem;
+      font-size: 1.75rem;
       letter-spacing: 0.03em;
       line-height: 1.1;
       margin-bottom: 6px;
@@ -581,14 +583,15 @@
     .modal-divider { height: 1px; background: var(--border); margin: 10px 0; }
 
     .modal-desc {
-      font-size: 0.8rem;
+      font-size: 0.7rem;
       color: var(--text-secondary);
-      line-height: 1.5;
+      line-height: 1.3;
       flex-grow: 1;
+      margin-bottom: 10px;
     }
 
     .price-block {
-      margin-top: 15px;
+      margin-top: 0px;
       background: var(--bg-raised);
       border-radius: var(--radius-md);
       padding: 16px;
@@ -607,7 +610,7 @@
 
     .price-main {
       font-family: 'Anton', sans-serif;
-      font-size: 2rem;
+      font-size: 1.8rem;
       color: var(--accent-bright);
       letter-spacing: 0.04em;
       line-height: 1;
@@ -835,6 +838,142 @@
       cursor: not-allowed;
     }
 
+    /* DRAG HANDLE */
+    .modal-drag-handle {
+      display: none;
+      width: 40px; height: 4px;
+      background: var(--border);
+      border-radius: 2px;
+      margin: 10px auto 6px;
+      flex-shrink: 0;
+    }
+
+    /* MODAL CLOSE — reposicionado como filho direto do modal */
+    .modal-close {
+      position: absolute;
+      top: 12px; right: 12px;
+      z-index: 10;
+      width: 36px; height: 36px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      color: var(--text-secondary);
+      transition: all 0.2s;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .modal-close:hover { background: var(--bg-surface); color: var(--text-primary); }
+    .modal-close svg { width: 16px; height: 16px; }
+
+    /* MALHA SELECTOR */
+    .malha-selector {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+    .malha-opt {
+      flex: 1;
+      padding: 8px 10px;
+      border-radius: var(--radius-sm);
+      border: 1.5px solid var(--border);
+      background: var(--bg-surface);
+      cursor: pointer;
+      transition: all 0.2s;
+      text-align: center;
+      user-select: none;
+    }
+    .malha-opt.active { border-color: var(--accent); background: var(--accent-glow); }
+    .malha-opt-label { font-size: 0.78rem; font-weight: 600; display: block; color: var(--text-secondary); }
+    .malha-opt-price { font-size: 0.7rem; color: var(--text-muted); display: block; }
+    .malha-opt.active .malha-opt-label { color: var(--accent); }
+    .malha-opt.active .malha-opt-price { color: var(--accent-bright); }
+
+    /* SIZE SELECTOR */
+    .size-selector { margin-bottom: 14px; }
+    .size-label {
+      font-size: 0.68rem; font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase; letter-spacing: 0.1em;
+      margin-bottom: 7px;
+    }
+    .size-opts { display: flex; gap: 6px; flex-wrap: wrap; }
+    .size-opt {
+      min-width: 38px; height: 34px;
+      padding: 0 8px;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-sm);
+      background: var(--bg-surface);
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.78rem; font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      color: var(--text-secondary);
+    }
+    .size-opt.active { border-color: var(--accent); background: var(--accent-glow); color: var(--accent); }
+    .size-opt:hover:not(.active) { border-color: var(--border-accent); }
+
+    /* CART QUANTITY */
+    .cart-item-qty {
+      display: flex; align-items: center; gap: 5px;
+      flex-shrink: 0;
+    }
+    .cart-item-qty button {
+      width: 26px; height: 26px;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      background: var(--bg-raised);
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; font-weight: 700; line-height: 1;
+      color: var(--text-secondary);
+      transition: all 0.2s;
+    }
+    .cart-item-qty button:hover { border-color: var(--border-accent); color: var(--accent); }
+    .cart-item-qty span { font-size: 0.85rem; font-weight: 600; min-width: 18px; text-align: center; }
+    .cart-item-details { font-size: 0.68rem; color: var(--text-muted); margin-top: 2px; }
+    .cart-item-price { font-size: 0.78rem; font-weight: 600; color: var(--accent-bright); margin-top: 3px; }
+
+    /* CART TOTAL */
+    .cart-total {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 10px 0 12px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 12px;
+    }
+    .cart-total-label { font-size: 0.85rem; font-weight: 600; color: var(--text-secondary); }
+    .cart-total-value { font-family: 'Anton', sans-serif; font-size: 1.4rem; color: var(--accent-bright); letter-spacing: 0.03em; }
+
+    /* COUPON */
+    .coupon-wrap { display: flex; gap: 8px; margin-bottom: 12px; }
+    .coupon-input {
+      flex: 1;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 9px 12px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.82rem;
+      background: var(--bg-raised);
+      color: var(--text-primary);
+      outline: none;
+      transition: border-color 0.2s;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .coupon-input:focus { border-color: var(--border-accent); }
+    .coupon-input::placeholder { color: var(--text-muted); text-transform: none; letter-spacing: 0; }
+    .coupon-btn {
+      padding: 9px 14px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      background: var(--bg-raised);
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.82rem; font-weight: 600;
+      cursor: pointer; color: var(--text-secondary);
+      transition: all 0.2s; white-space: nowrap;
+    }
+    .coupon-btn:hover { border-color: var(--border-accent); color: var(--accent); }
+
     /* ANIMATIONS */
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(12px); }
@@ -866,12 +1005,12 @@
         max-height: 92vh;
         border-radius: var(--radius-lg) var(--radius-lg) 0 0;
       }
-      .modal-images { border-radius: var(--radius-lg) var(--radius-lg) 0 0; }
-      .modal-main-img { aspect-ratio: auto; width: 100%; max-height: 260px; object-fit: contain; padding: 12px; }
-      .modal-details { padding: 18px 18px 20px; }
+      .modal-drag-handle { display: block; grid-column: 1 / -1; }
+      .modal-images { border-radius: 0; }
+      .modal-main-img { aspect-ratio: auto; width: 100%; max-height: 240px; object-fit: contain; padding: 12px; }
+      .modal-details { padding: 14px 18px 20px; }
       .modal-title { font-size: 1.5rem; }
-      .price-main { font-size: 1.9rem; }
-      .price-alt { display: none; }
+      .price-main { font-size: 1.7rem; }
       .shirt-price-label { display: none; }
     }
   </style>
@@ -968,33 +1107,59 @@
   <!-- MODAL -->
   <div class="modal-overlay" id="modalOverlay" onclick="closeModalOnBg(event)">
     <div class="modal" id="modal">
+      <!-- Close button — position:absolute, always top-right of modal -->
+      <div class="modal-close" onclick="closeModal()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </div>
+      <!-- Drag handle — shown only on mobile -->
+      <div class="modal-drag-handle" id="modalDragHandle"></div>
+
       <div class="modal-images">
         <img class="modal-main-img" id="modalMainImg" src="" alt="">
         <div class="modal-thumbs" id="modalThumbs"></div>
       </div>
+
       <div class="modal-details">
-        <div class="modal-close" onclick="closeModal()">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
-        </div>
         <div class="modal-tag" id="modalTag"></div>
         <div class="modal-title" id="modalTitle"></div>
         <div class="modal-subtitle" id="modalSubtitle"></div>
         <div class="modal-divider"></div>
         <div class="modal-desc" id="modalDesc"></div>
-        <div class="price-block">
-          <div class="price-main-label">Preço — Malha Importada</div>
-          <div class="price-main" id="modalPrice">R$ 150</div>
-          <div class="price-alt">
-            <strong>Malha Nacional disponível por R$ 80</strong><br>
-            Entre em contato para solicitar nesta opção com desconto.
+
+        <!-- MALHA SELECTOR -->
+        <div class="malha-selector">
+          <div class="malha-opt active" onclick="selectMalha('importada')" id="malha-importada">
+            <span class="malha-opt-label">Malha Importada</span>
+            <span class="malha-opt-price">R$ 150,00</span>
+          </div>
+          <div class="malha-opt" onclick="selectMalha('nacional')" id="malha-nacional">
+            <span class="malha-opt-label">Malha Nacional</span>
+            <span class="malha-opt-price">R$ 80,00</span>
           </div>
         </div>
+
+        <!-- SIZE SELECTOR -->
+        <div class="size-selector">
+          <div class="size-label">Tamanho</div>
+          <div class="size-opts">
+            <button class="size-opt" onclick="selectSize('P')">P</button>
+            <button class="size-opt active" onclick="selectSize('M')">M</button>
+            <button class="size-opt" onclick="selectSize('G')">G</button>
+            <button class="size-opt" onclick="selectSize('GG')">GG</button>
+            <button class="size-opt" onclick="selectSize('G1')">G1</button>
+          </div>
+        </div>
+
+        <div class="price-block">
+          <div class="price-main-label" id="modalPriceLabel">Malha Importada</div>
+          <div class="price-main" id="modalPrice">R$ 150,00</div>
+        </div>
+
         <div class="modal-cta">
           <div class="modal-cta-row">
-            <button class="btn-primary" onclick="pedirCamisa()">📲 Pedir agora</button>
+            <button class="btn-primary" onclick="pedirCamisa()">Pedir agora</button>
             <button class="btn-cart" id="btnAddCart" onclick="addCurrentToCart()">🛒 Adicionar</button>
           </div>
-          <!-- <button class="btn-secondary" onclick="closeModal()">Fechar</button> -->
         </div>
       </div>
     </div>
@@ -1014,8 +1179,16 @@
       </div>
       <div class="cart-items" id="cartItemsEl"></div>
       <div class="cart-footer">
+        <div class="cart-total">
+          <span class="cart-total-label">Total</span>
+          <span class="cart-total-value" id="cartTotalValue">R$ 0,00</span>
+        </div>
+        <div class="coupon-wrap">
+          <input type="text" class="coupon-input" id="couponInput" placeholder="Cupom de desconto">
+          <button class="coupon-btn" onclick="applyCoupon()">Aplicar</button>
+        </div>
         <button class="btn-checkout" id="btnCheckout" onclick="checkoutWhatsApp()" disabled>
-          📲 Finalizar pedido no WhatsApp
+          Finalizar pedido no WhatsApp
         </button>
       </div>
     </div>
@@ -1023,7 +1196,7 @@
 
   <script>
     // Número do WhatsApp da loja (formato internacional, sem + ou espaços)
-    const WHATSAPP = '5511999999999';
+    const WHATSAPP = '5511987688538'; 
 
     const LEAGUES = ['brasileirao', 'premierleague', 'laliga', 'liga01', 'bundesliga'];
     const LEAGUE_NAMES = {
@@ -1033,6 +1206,7 @@
       liga01: 'Ligue 1',
       bundesliga: 'Bundesliga'
     };
+    const PRECOS = { importada: 150, nacional: 80 };
 
     let camisetas = [];
     let cart = [];
@@ -1041,6 +1215,8 @@
     let searchMode = false;
     let currentModalId = null;
     let currentImgs = [];
+    let currentMalha = 'importada';
+    let currentTamanho = 'M';
 
     // ---- INIT ----
 
@@ -1078,6 +1254,14 @@
       updateCount();
       makeSlider(document.getElementById('leagueSlider'));
       document.querySelectorAll('.list-subcard').forEach(makeSlider);
+      initModalDrag();
+      // Mobile: Enter key hides keyboard
+      const searchInput = document.getElementById('searchInput');
+      if (searchInput) {
+        searchInput.addEventListener('keydown', e => {
+          if (e.key === 'Enter') searchInput.blur();
+        });
+      }
     }
 
     // ---- RENDER ----
@@ -1197,6 +1381,20 @@
       }
     }
 
+    function normalize(s) {
+      return s.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+    }
+
+    function fuzzyMatch(text, query) {
+      const t = normalize(text), q = normalize(query);
+      let ti = 0, qi = 0;
+      while (ti < t.length && qi < q.length) {
+        if (t[ti] === q[qi]) qi++;
+        ti++;
+      }
+      return qi === q.length;
+    }
+
     function filterSearch(val) {
       const q = val.trim();
       if (!q) { exitSearchMode(true); return; }
@@ -1209,11 +1407,10 @@
       if (isNumeric) {
         results = camisetas.filter(c => c.id === parseInt(q));
       } else {
-        const ql = q.toLowerCase();
         results = camisetas.filter(c =>
-          c.nome.toLowerCase().includes(ql) ||
-          c.modelo.toLowerCase().includes(ql) ||
-          c.submenuNome.toLowerCase().includes(ql)
+          fuzzyMatch(c.nome, q) ||
+          fuzzyMatch(c.modelo, q) ||
+          fuzzyMatch(c.submenuNome, q)
         );
       }
 
@@ -1258,6 +1455,8 @@
 
       currentModalId = id;
       currentImgs = item.imagens;
+      currentMalha = 'importada';
+      currentTamanho = 'M';
 
       document.getElementById('modalTag').textContent = item.submenuNome + ' · ' + LEAGUE_NAMES[item.menu];
       document.getElementById('modalTitle').textContent = item.nome;
@@ -1265,7 +1464,17 @@
       document.getElementById('modalDesc').textContent = item.descricao;
       document.getElementById('modalMainImg').src = item.imagens[0];
       document.getElementById('modalMainImg').alt = item.nome;
-      document.getElementById('modalPrice').textContent = 'R$ ' + item.preco;
+
+      // Reset malha UI
+      document.querySelectorAll('.malha-opt').forEach(el => el.classList.remove('active'));
+      document.getElementById('malha-importada').classList.add('active');
+
+      // Reset size UI — default M
+      document.querySelectorAll('.size-opt').forEach(el => {
+        el.classList.toggle('active', el.textContent.trim() === 'M');
+      });
+
+      updateModalPrice();
 
       const thumbsEl = document.getElementById('modalThumbs');
       thumbsEl.innerHTML = '';
@@ -1284,12 +1493,38 @@
       document.body.style.overflow = 'hidden';
     }
 
+    function updateModalPrice() {
+      const preco = PRECOS[currentMalha];
+      const label = currentMalha === 'importada' ? 'Malha Importada' : 'Malha Nacional';
+      document.getElementById('modalPriceLabel').textContent = label;
+      document.getElementById('modalPrice').textContent = formatPrice(preco);
+    }
+
+    function selectMalha(malha) {
+      currentMalha = malha;
+      document.querySelectorAll('.malha-opt').forEach(el => el.classList.remove('active'));
+      document.getElementById('malha-' + malha).classList.add('active');
+      updateModalPrice();
+      updateCartButton();
+    }
+
+    function selectSize(size) {
+      currentTamanho = size;
+      document.querySelectorAll('.size-opt').forEach(el => {
+        el.classList.toggle('active', el.textContent.trim() === size);
+      });
+      updateCartButton();
+    }
+
     function selectThumb(i) {
       document.getElementById('modalMainImg').src = currentImgs[i];
       document.querySelectorAll('.modal-thumb').forEach((t, idx) => t.classList.toggle('active', idx === i));
     }
 
     function closeModal() {
+      const modal = document.getElementById('modal');
+      modal.style.transform = '';
+      modal.style.transition = '';
       document.getElementById('modalOverlay').classList.remove('open');
       document.body.style.overflow = '';
       currentModalId = null;
@@ -1302,18 +1537,69 @@
     function pedirCamisa() {
       if (currentModalId === null) return;
       const item = camisetas.find(c => c.id === currentModalId);
-      const msg = encodeURIComponent(`Olá! Tenho interesse na seguinte camiseta:\n*${item.nome} (#${item.id})*`);
+      const malhaLabel = currentMalha === 'importada' ? 'Malha Importada' : 'Malha Nacional';
+      const msg = encodeURIComponent(
+        `Olá! Tenho interesse na seguinte camiseta:\n*${item.nome} (#${item.id})*\nTamanho: ${currentTamanho}\n${malhaLabel} — ${formatPrice(PRECOS[currentMalha])}`
+      );
       window.open(`https://wa.me/${WHATSAPP}?text=${msg}`, '_blank');
+    }
+
+    // ---- MODAL DRAG (swipe down to close) ----
+
+    function initModalDrag() {
+      const modal = document.getElementById('modal');
+      const THRESHOLD = 80;
+      let startY = 0, currentY = 0, dragging = false;
+
+      modal.addEventListener('touchstart', e => {
+        startY = e.touches[0].clientY;
+        currentY = startY;
+        dragging = true;
+        modal.style.transition = 'none';
+      }, { passive: true });
+
+      modal.addEventListener('touchmove', e => {
+        if (!dragging) return;
+        currentY = e.touches[0].clientY;
+        const dy = currentY - startY;
+        if (dy > 0) modal.style.transform = `translateY(${dy}px)`;
+      }, { passive: true });
+
+      modal.addEventListener('touchend', () => {
+        if (!dragging) return;
+        dragging = false;
+        modal.style.transition = '';
+        const dy = currentY - startY;
+        if (dy > THRESHOLD) {
+          closeModal();
+        } else {
+          modal.style.transform = '';
+        }
+      });
     }
 
     // ---- CART ----
 
+    function formatPrice(val) {
+      return 'R$ ' + val.toFixed(2).replace('.', ',');
+    }
+
+    function cartKey(id, malha, tamanho) {
+      return `${id}:${malha}:${tamanho}`;
+    }
+
+    function totalQty() {
+      return cart.reduce((s, c) => s + c.qty, 0);
+    }
+
     function updateCartButton() {
       const btn = document.getElementById('btnAddCart');
       if (!btn || currentModalId === null) return;
-      const inCart = cart.some(c => c.id === currentModalId);
-      const full = cart.length >= 10;
-      if (inCart) {
+      const key = cartKey(currentModalId, currentMalha, currentTamanho);
+      const existing = cart.find(c => c.key === key);
+      const full = totalQty() >= 10;
+
+      if (existing) {
         btn.textContent = '✓ Já no carrinho';
         btn.classList.add('in-cart');
         btn.disabled = false;
@@ -1330,15 +1616,42 @@
 
     function addCurrentToCart() {
       if (currentModalId === null) return;
-      if (cart.some(c => c.id === currentModalId) || cart.length >= 10) return;
-      const item = camisetas.find(c => c.id === currentModalId);
-      cart.push({ id: item.id, nome: item.nome, preco: item.preco, imagem: item.imagem });
+      const key = cartKey(currentModalId, currentMalha, currentTamanho);
+      if (totalQty() >= 10) return;
+
+      const existing = cart.find(c => c.key === key);
+      if (existing) {
+        existing.qty++;
+      } else {
+        const item = camisetas.find(c => c.id === currentModalId);
+        cart.push({
+          key,
+          id: item.id,
+          nome: item.nome,
+          imagem: item.imagem,
+          malha: currentMalha,
+          tamanho: currentTamanho,
+          preco: PRECOS[currentMalha],
+          qty: 1
+        });
+      }
       updateCartButton();
       updateCartBadge();
     }
 
-    function removeFromCart(id) {
-      cart = cart.filter(c => c.id !== id);
+    function changeQty(key, delta) {
+      const item = cart.find(c => c.key === key);
+      if (!item) return;
+      if (delta > 0 && totalQty() >= 10) return;
+      item.qty += delta;
+      if (item.qty <= 0) cart = cart.filter(c => c.key !== key);
+      renderCart();
+      updateCartBadge();
+      if (currentModalId !== null) updateCartButton();
+    }
+
+    function removeFromCart(key) {
+      cart = cart.filter(c => c.key !== key);
       renderCart();
       updateCartBadge();
       if (currentModalId !== null) updateCartButton();
@@ -1359,10 +1672,19 @@
       if (e.target === document.getElementById('cartOverlay')) closeCart();
     }
 
+    function malhaLabel(m) {
+      return m === 'importada' ? 'Importada' : 'Nacional';
+    }
+
     function renderCart() {
       const el = document.getElementById('cartItemsEl');
       const btn = document.getElementById('btnCheckout');
-      document.getElementById('cartSubtitle').textContent = cart.length + ' / 10 itens';
+      const qty = totalQty();
+      document.getElementById('cartSubtitle').textContent = qty + ' / 10 itens';
+
+      const total = cart.reduce((s, c) => s + c.preco * c.qty, 0);
+      const totalEl = document.getElementById('cartTotalValue');
+      if (totalEl) totalEl.textContent = formatPrice(total);
 
       if (cart.length === 0) {
         el.innerHTML = '<div class="cart-empty-msg">Seu carrinho está vazio.</div>';
@@ -1375,9 +1697,15 @@
           <img class="cart-item-img" src="${c.imagem}" alt="${c.nome}">
           <div class="cart-item-info">
             <div class="cart-item-name">${c.nome}</div>
-            <div class="cart-item-id">#${c.id} · R$ ${c.preco}</div>
+            <div class="cart-item-details">#${c.id} · ${c.tamanho} · Malha ${malhaLabel(c.malha)}</div>
+            <div class="cart-item-price">${formatPrice(c.preco * c.qty)}</div>
           </div>
-          <button class="cart-item-remove" onclick="removeFromCart(${c.id})" title="Remover">
+          <div class="cart-item-qty">
+            <button onclick="changeQty('${c.key}', -1)" title="Diminuir">−</button>
+            <span>${c.qty}</span>
+            <button onclick="changeQty('${c.key}', 1)" title="Aumentar">+</button>
+          </div>
+          <button class="cart-item-remove" onclick="removeFromCart('${c.key}')" title="Remover">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
           </button>
         </div>`).join('');
@@ -1387,19 +1715,30 @@
 
     function updateCartBadge() {
       const badge = document.getElementById('cartBadge');
-      if (cart.length === 0) {
+      const qty = totalQty();
+      if (qty === 0) {
         badge.style.display = 'none';
       } else {
         badge.style.display = 'flex';
-        badge.textContent = cart.length;
+        badge.textContent = qty > 99 ? '99+' : qty;
       }
     }
 
     function checkoutWhatsApp() {
       if (cart.length === 0) return;
-      const lines = cart.map(c => `*${c.nome} (#${c.id})*`).join('\n');
-      const msg = encodeURIComponent(`Olá! Gostaria de fazer um pedido:\n${lines}`);
+      const lines = cart.map(c =>
+        `${c.qty}x ${c.nome} (#${c.id}) (${c.tamanho}) (Malha ${malhaLabel(c.malha)}) ${formatPrice(c.preco)}`
+      ).join('\n');
+      const total = cart.reduce((s, c) => s + c.preco * c.qty, 0);
+      const msg = encodeURIComponent(`Olá! Gostaria de fazer um pedido:\n\n${lines}\n\n*Total: ${formatPrice(total)}*`);
       window.open(`https://wa.me/${WHATSAPP}?text=${msg}`, '_blank');
+    }
+
+    function applyCoupon() {
+      const code = document.getElementById('couponInput').value.trim().toUpperCase();
+      if (!code) return;
+      // Implementação futura de cupons
+      alert('Cupom "' + code + '" não reconhecido.');
     }
 
     // ---- SLIDER DRAG ----
