@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ╔══════════════════════════════════════════════════════╗
+  ║   PANFLETO CORPORATIVO — VERSO                       ║
+  ║   A4 Portrait · 210 × 297 mm · 300 DPI              ║
+  ╠══════════════════════════════════════════════════════╣
+  ║  📷 Salve a imagem da EQUIPE como:                   ║
+  ║     imgs/foto_instalacao.jpg                         ║
+  ╠══════════════════════════════════════════════════════╣
+  ║  🖨 Inkscape → Arquivo → Exportar PDF (300 DPI)      ║
+  ║     Gráfica: A4 · sangria 3 mm · couchê 150 g/m²    ║
+  ╚══════════════════════════════════════════════════════╝
+-->
+<svg xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     viewBox="0 0 794 1123" width="210mm" height="297mm">
+
+<!-- ── PRINT CSS ── -->
+<style>
+  @page {
+    size: A4 portrait;
+    margin: 0;
+  }
+  @media print {
+    svg {
+      width: 210mm !important;
+      height: 297mm !important;
+    }
+  }
+</style>
+
+<defs>
+  <linearGradient id="imgFadeV" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%"   stop-color="rgba(3,6,9,0.82)"/>
+    <stop offset="28%"  stop-color="rgba(3,6,9,0.42)"/>
+    <stop offset="72%"  stop-color="rgba(3,6,9,0.42)"/>
+    <stop offset="100%" stop-color="rgba(3,6,9,0.92)"/>
+  </linearGradient>
+  <linearGradient id="imgFadeH" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0%"   stop-color="rgba(3,6,9,0.6)"/>
+    <stop offset="30%"  stop-color="rgba(3,6,9,0)"/>
+    <stop offset="70%"  stop-color="rgba(3,6,9,0)"/>
+    <stop offset="100%" stop-color="rgba(3,6,9,0.5)"/>
+  </linearGradient>
+  <radialGradient id="blueGlow" cx="50%" cy="50%" r="50%">
+    <stop offset="0%"   stop-color="rgba(59,130,246,0.14)"/>
+    <stop offset="100%" stop-color="rgba(59,130,246,0)"/>
+  </radialGradient>
+  <pattern id="grid" width="42" height="42" patternUnits="userSpaceOnUse">
+    <path d="M 42 0 L 0 0 0 42" fill="none" stroke="rgba(59,130,246,0.05)" stroke-width="0.5"/>
+  </pattern>
+  <linearGradient id="igGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+    <stop offset="0%"   stop-color="#f09433"/>
+    <stop offset="50%"  stop-color="#e6386a"/>
+    <stop offset="100%" stop-color="#bc1888"/>
+  </linearGradient>
+  <pattern id="qrfill" x="0" y="0" width="12" height="12" patternUnits="userSpaceOnUse">
+    <rect x="0" y="0" width="6" height="6" fill="#111"/>
+    <rect x="6" y="6" width="6" height="6" fill="#111"/>
+  </pattern>
+  <clipPath id="page"><rect width="794" height="1123"/></clipPath>
+</defs>
+
+<g clip-path="url(#page)">
+
+<!-- ═══════════════════════════════════════════════════════
+     SECTION 1 · BRAND HEADER  (y 0 → 96)
+     ═══════════════════════════════════════════════════════ -->
+
+<rect x="0" y="0" width="794" height="96" fill="#030609"/>
+<rect x="0" y="0" width="794" height="96" fill="url(#grid)"/>
+<rect x="0" y="0" width="5"   height="96" fill="#3b82f6" opacity="0.85"/>
+<rect x="789" y="0" width="5" height="96" fill="#3b82f6" opacity="0.4"/>
+
+<image href="myLogo.png"
+       x="22" y="16" height="56" width="210"
+       preserveAspectRatio="xMinYMid meet"/>
+
+<text x="762" y="44"
+  font-family="Georgia, 'Times New Roman', serif"
+  font-size="22" fill="#edf2ff"
+  text-anchor="end" letter-spacing="3" font-weight="300">CARRARA ALUMIGLASS</text>
+<text x="762" y="68"
+  font-family="Arial, Helvetica, sans-serif"
+  font-size="12" fill="rgba(59,130,246,0.75)"
+  text-anchor="end" letter-spacing="4.5">ESQUADRIAS DE ALUMÍNIO</text>
+
+<line x1="0" y1="96" x2="794" y2="96" stroke="rgba(59,130,246,0.22)" stroke-width="1"/>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     SECTION 2 · IMAGE HERO  (y 96 → 460)
+     ═══════════════════════════════════════════════════════ -->
+
+<rect x="0" y="96" width="794" height="364" fill="#0d1d32"/>
+<image href="foto_instalacao.jpg"
+       x="0" y="96" width="794" height="364"
+       preserveAspectRatio="xMidYMid slice"/>
+<rect x="0" y="96" width="794" height="364" fill="url(#imgFadeV)"/>
+<rect x="0" y="96" width="794" height="364" fill="url(#imgFadeH)"/>
+<rect x="0" y="96" width="5"   height="364" fill="#3b82f6" opacity="0.85"/>
+
+<!-- Eyebrow top da imagem -->
+<text x="32" y="136"
+  font-family="Arial, Helvetica, sans-serif"
+  font-size="12" fill="rgba(59,130,246,0.9)"
+  letter-spacing="5">NOSSA EQUIPE</text>
+
+<!-- Texto bottom da imagem -->
+<text x="32" y="374"
+  font-family="Georgia, 'Times New Roman', serif"
+  font-size="40" fill="#edf2ff"
+  font-weight="300" letter-spacing="0.5">Mão de obra especializada,</text>
+<text x="32" y="420"
+  font-family="Georgia, 'Times New Roman', serif"
+  font-size="40" fill="#7aabda"
+  font-weight="300" letter-spacing="0.5">comprometida e pontual.</text>
+
+<line x1="32" y1="442" x2="178" y2="442" stroke="#3b82f6" stroke-width="1.8" opacity="0.9"/>
+<line x1="178" y1="442" x2="480" y2="442" stroke="rgba(59,130,246,0.22)" stroke-width="1"/>
+
+<!-- Badge cobertura (direita) -->
+<rect x="566" y="360" width="196" height="72" rx="2"
+  fill="rgba(59,130,246,0.13)" stroke="rgba(59,130,246,0.38)" stroke-width="1"/>
+<text x="664" y="383"
+  font-family="Arial, Helvetica, sans-serif"
+  font-size="11" fill="rgba(122,171,208,0.9)"
+  text-anchor="middle" letter-spacing="2">ATENDEMOS</text>
+<text x="664" y="406"
+  font-family="Georgia, 'Times New Roman', serif"
+  font-size="19" fill="#edf2ff"
+  text-anchor="middle">São Paulo</text>
+<text x="664" y="424"
+  font-family="Georgia, 'Times New Roman', serif"
+  font-size="19" fill="#7aabda"
+  text-anchor="middle">e Grande SP</text>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     SECTION 3 · POR QUE A CARRARA?  (y 460 → 690)
+     ═══════════════════════════════════════════════════════ -->
+
+<rect x="0" y="460" width="794" height="230" fill="#060d1c"/>
+<rect x="0" y="460" width="794" height="230" fill="url(#grid)"/>
+<rect x="0" y="460" width="5"   height="230" fill="#3b82f6" opacity="0.85"/>
+
+<line x1="0" y1="460" x2="794" y2="460" stroke="rgba(59,130,246,0.2)" stroke-width="1"/>
+
+<line x1="32" y1="486" x2="62" y2="486" stroke="#3b82f6" stroke-width="1.5" opacity="0.9"/>
+<text x="72" y="491"
+  font-family="Arial, Helvetica, sans-serif"
+  font-size="11.5" fill="rgba(59,130,246,0.8)"
+  letter-spacing="5">POR QUE ESCOLHER A CARRARA?</text>
+
+<!-- Item 1 — espaçamento uniforme de 50px entre itens -->
+<!-- cy=518, title y=515, sub y=533 -->
+<circle cx="48" cy="518" r="6" fill="#3b82f6"/>
+<text x="68" y="515"
+  font-family="Georgia, 'Times New Roman', serif"
+  font-size="16" fill="#edf2ff" letter-spacing="0.3">Atendimento ágil — orçamento em até 24 horas</text>
+<text x="68" y="533"
+  font-family="Arial, Helvetica, sans-serif"
+  font-size="11.5" fill="rgba(58,92,126,0.95)">Enviamos proposta detalhada e agendamos visita técnica sem compromisso.</text>
+
+<!-- Item 2 -->
+<!-- cy=565, title y=562, sub y=580 -->
+<circle cx="48" cy="565" r="6" fill="#3b82f6"/>
+<text x="68" y="562"
+  font-family="Georgia, 'Times New Roman', serif"
+  font-size="16" fill="#edf2ff" letter-spacing="0.3">Equipe qualificada com anos de experiência</text>
+<text x="68" y="580"
+  font-family="Arial, Helvetica, sans-serif"
+  font-size="11.5" fill="rgba(58,92,126,0.95)">Técnicos especializados em alumínio, vidro temperado e fechamentos corporativos.</text>
+
+<!-- Item 3 -->
+<!-- cy=612, title y=609, sub y=627 -->
+<circle cx="48" cy="612" r="6" fill="#3b82f6"/>
+<text x="68" y="609"
+  font-family="Georgia, 'Times New Roman', serif"
+  font-size="16" fill="#edf2ff" letter-spacing="0.3">Soluções completas: do projeto à manutenção</text>
+<text x="68" y="627"
+  font-family="Arial, Helvetica, sans-serif"
+  font-size="11.5" fill="rgba(58,92,126,0.95)">Instalação, regulagem, vedação e restauro — tudo em um único fornecedor.</text>
+
+<!-- Item 4 -->
+<!-- cy=659, title y=656, sub y=674 (gap=18px igual aos demais) -->
+<circle cx="48" cy="659" r="6" fill="rgba(59,130,246,0.55)"/>
+<text x="68" y="656"
+  font-family="Georgia, 'Times New Roman', serif"
+  font-size="16" fill="rgba(237,242,255,0.72)" letter-spacing="0.3">Garantia em todos os serviços prestados</text>
+<text x="68" y="674"
+  font-family="Arial, Helvetica, sans-serif"
+  font-size="11.5" fill="rgba(58,92,126,0.8)">Qualidade e transparência em cada etapa do atendimento.</text>
+
+<line x1="0" y1="690" x2="794" y2="690" stroke="rgba(59,130,246,0.2)" stroke-width="1"/>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     SECTION 4 · CONTATOS  (y 690 → 930)
+     ═══════════════════════════════════════════════════════ -->
+
+<rect x="0" y="690" width="794" height="240" fill="#050608"/>
+<rect x="0" y="690" width="794" height="240" fill="url(#grid)"/>
+<rect x="0" y="690" width="5"   height="240" fill="#3b82f6" opacity="0.85"/>
+
+<ellipse cx="397" cy="810" rx="310" ry="140" fill="url(#blueGlow)"/>
+
+<line x1="32" y1="716" x2="60" y2="716" stroke="#3b82f6" stroke-width="1.5" opacity="0.8"/>
+<text x="70" y="721"
+  font-family="Arial, Helvetica, sans-serif"
+  font-size="11.5" fill="rgba(59,130,246,0.8)"
+  letter-spacing="4">FALE CONOSCO</text>
+
+<text x="32" y="762"
+  font-family="Georgia, 'Times New Roman', serif"
+  font-size="32" fill="#edf2ff"
+  font-weight="300" letter-spacing="0.5">Vamos conversar sobre o seu projeto.</text>
+
+<line x1="32" y1="778" x2="762" y2="778"
+  stroke="rgba(59,130,246,0.12)" stroke-width="1"/>
+
+<!-- WHATSAPP — center x: 133 -->
+<circle cx="133" cy="825" r="28"
+  fill="rgba(37,211,102,0.1)" stroke="#25D366" stroke-width="1.8"/>
+<g transform="translate(121,813) scale(0.92)">
+  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"
+        fill="#25D366"/>
+</g>
+<text x="133" y="867"
+  font-family="Arial, Helvetica, sans-serif"
+  font-size="10.5" fill="rgba(59,130,246,0.75)"
+  text-anchor="middle" letter-spacing="3">WHATSAPP</text>
+<text x="133" y="892"
+  font-family="Georgia, 'Times New Roman', serif"
+  font-size="18" fill="#edf2ff"
+  text-anchor="middle" letter-spacing="0.5">(11) 98933-4712</text>
+
+<line x1="264" y1="790" x2="264" y2="906" stroke="rgba(59,130,246,0.15)" stroke-width="1"/>
+
+<!-- INSTAGRAM — center x: 397 -->
+<rect x="369" y="797" width="56" height="56" rx="14"
+  fill="rgba(188,24,136,0.1)" stroke="url(#igGrad)" stroke-width="1.8"/>
+<circle cx="397" cy="825" r="13" fill="none" stroke="url(#igGrad)" stroke-width="1.8"/>
+<circle cx="397" cy="825" r="4.5" fill="url(#igGrad)"/>
+<circle cx="414" cy="808" r="3.5" fill="url(#igGrad)"/>
+<text x="397" y="867"
+  font-family="Arial, Helvetica, sans-serif"
+  font-size="10.5" fill="rgba(204,35,102,0.85)"
+  text-anchor="middle" letter-spacing="3">INSTAGRAM</text>
+<text x="397" y="892"
+  font-family="Georgia, 'Times New Roman', serif"
+  font-size="18" fill="#edf2ff"
+  text-anchor="middle" letter-spacing="0.5">@carraraalumiglass</text>
+
+<line x1="530" y1="790" x2="530" y2="906" stroke="rgba(59,130,246,0.15)" stroke-width="1"/>
+
+<!-- SITE — center x: 661 -->
+<circle cx="661" cy="825" r="28"
+  fill="rgba(59,130,246,0.08)" stroke="#3b82f6" stroke-width="1.8"/>
+<ellipse cx="661" cy="825" rx="11" ry="20" fill="none" stroke="#3b82f6" stroke-width="1.2"/>
+<line x1="641" y1="825" x2="681" y2="825" stroke="#3b82f6" stroke-width="1.2"/>
+<path d="M 643,811 Q 661,817 679,811" fill="none" stroke="#3b82f6" stroke-width="1"/>
+<path d="M 643,839 Q 661,833 679,839" fill="none" stroke="#3b82f6" stroke-width="1"/>
+<text x="661" y="867"
+  font-family="Arial, Helvetica, sans-serif"
+  font-size="10.5" fill="rgba(59,130,246,0.75)"
+  text-anchor="middle" letter-spacing="3">SITE</text>
+<text x="661" y="892"
+  font-family="Georgia, 'Times New Roman', serif"
+  font-size="16" fill="#edf2ff"
+  text-anchor="middle" letter-spacing="0.3">carraraalumiglass.com.br</text>
+
+<line x1="0" y1="930" x2="794" y2="930" stroke="rgba(59,130,246,0.15)" stroke-width="1"/>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     SECTION 5 · QR CODE + CTA FINAL  (y 930 → 1097)
+     ═══════════════════════════════════════════════════════ -->
+
+<rect x="0" y="930" width="794" height="167" fill="#060d1c"/>
+<rect x="0" y="930" width="794" height="167" fill="url(#grid)"/>
+<rect x="0" y="930" width="5"   height="167" fill="#3b82f6" opacity="0.85"/>
+
+<!-- QR CODE (canto inferior esquerdo) -->
+<!-- ⚠ Substituir pelo QR real antes de imprimir -->
+<!-- Gere em https://qr.io para: https://www.carraraalumiglass.com.br -->
+<rect x="32"  y="940" width="140" height="140" rx="4" fill="white"/>
+<rect x="42"  y="950" width="120" height="120" fill="url(#qrfill)"/>
+<!-- Finder TL -->
+<rect x="42"  y="950" width="48" height="48" fill="white"/>
+<rect x="42"  y="950" width="40" height="40" fill="#111"/>
+<rect x="48"  y="956" width="28" height="28" fill="white"/>
+<rect x="54"  y="962" width="16" height="16" fill="#111"/>
+<!-- Finder TR -->
+<rect x="114" y="950" width="48" height="48" fill="white"/>
+<rect x="116" y="950" width="40" height="40" fill="#111"/>
+<rect x="122" y="956" width="28" height="28" fill="white"/>
+<rect x="128" y="962" width="16" height="16" fill="#111"/>
+<!-- Finder BL -->
+<rect x="42"  y="1022" width="48" height="48" fill="white"/>
+<rect x="42"  y="1024" width="40" height="40" fill="#111"/>
+<rect x="48"  y="1030" width="28" height="28" fill="white"/>
+<rect x="54"  y="1036" width="16" height="16" fill="#111"/>
+<!-- Alignment pattern -->
+<rect x="112" y="1022" width="16" height="16" fill="#111"/>
+<rect x="115" y="1025" width="10" height="10" fill="white"/>
+<rect x="118" y="1028" width="4"  height="4"  fill="#111"/>
+<!-- Timing modules -->
+<rect x="88"  y="984"  width="6"  height="6"  fill="white"/>
+<rect x="100" y="984"  width="6"  height="6"  fill="white"/>
+<rect x="78"  y="996"  width="6"  height="6"  fill="white"/>
+<rect x="78"  y="1008" width="6"  height="6"  fill="white"/>
+
+<!-- QR label — separado do rodapé -->
+<text x="102" y="1090"
+  font-family="Arial, Helvetica, sans-serif"
+  font-size="11.5" fill="rgba(122,171,208,0.55)"
+  text-anchor="middle" letter-spacing="1.5">Acesse nosso site</text>
+
+<!-- CTA texto (à direita do QR) -->
+<text x="210" y="968"
+  font-family="Arial, Helvetica, sans-serif"
+  font-size="11" fill="rgba(59,130,246,0.75)"
+  letter-spacing="4">PRÓXIMO PASSO</text>
+
+<text x="210" y="1002"
+  font-family="Georgia, 'Times New Roman', serif"
+  font-size="26" fill="#edf2ff"
+  font-weight="300" letter-spacing="0.5">Solicite um orçamento</text>
+<text x="210" y="1034"
+  font-family="Georgia, 'Times New Roman', serif"
+  font-size="26" fill="#7aabda"
+  font-weight="300" letter-spacing="0.5">gratuito agora mesmo.</text>
+
+<line x1="210" y1="1050" x2="380" y2="1050" stroke="#3b82f6" stroke-width="1.5" opacity="0.8"/>
+<line x1="380" y1="1050" x2="762" y2="1050" stroke="rgba(59,130,246,0.22)" stroke-width="1"/>
+
+<text x="210" y="1073"
+  font-family="Arial, Helvetica, sans-serif"
+  font-size="12.5" fill="rgba(58,92,126,0.95)" letter-spacing="0.3">(11) 98933-4712  ·  @carraraalumiglass  ·  carraraalumiglass.com.br</text>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     FOOTER BAR  (y 1097 → 1123)
+     ═══════════════════════════════════════════════════════ -->
+
+<rect x="0" y="1097" width="794" height="26" fill="rgba(59,130,246,0.07)"/>
+<line x1="0" y1="1097" x2="794" y2="1097" stroke="rgba(59,130,246,0.2)" stroke-width="1"/>
+<text x="397" y="1115"
+  font-family="Arial, Helvetica, sans-serif"
+  font-size="11" fill="rgba(58,92,126,0.75)"
+  text-anchor="middle" letter-spacing="2">CARRARA ALUMIGLASS  ·  SÃO PAULO / SP  ·  carraraalumiglass.com.br</text>
+
+</g>
+</svg>

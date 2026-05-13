@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1080" width="1080" height="1080">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="44%" r="70%" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="1080" y2="1080">
+      <stop offset="0%" stop-color="#0d1f38"/>
+      <stop offset="100%" stop-color="#050608"/>
+    </radialGradient>
+    <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
+      <path d="M 60 0 L 0 0 0 60" fill="none" stroke="rgba(59,130,246,0.07)" stroke-width="0.5"/>
+    </pattern>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="rgba(59,130,246,0.16)"/>
+      <stop offset="100%" stop-color="rgba(59,130,246,0)"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1080" height="1080" fill="url(#bg)"/>
+  <rect width="1080" height="1080" fill="url(#grid)"/>
+  <ellipse cx="540" cy="410" rx="340" ry="340" fill="url(#glow)"/>
+
+  <path d="M 60,130 L 60,60 L 130,60" stroke="rgba(59,130,246,0.4)" stroke-width="2" fill="none"/>
+  <path d="M 950,60 L 1020,60 L 1020,130" stroke="rgba(59,130,246,0.4)" stroke-width="2" fill="none"/>
+  <path d="M 60,950 L 60,1020 L 130,1020" stroke="rgba(59,130,246,0.4)" stroke-width="2" fill="none"/>
+  <path d="M 950,1020 L 1020,1020 L 1020,950" stroke="rgba(59,130,246,0.4)" stroke-width="2" fill="none"/>
+
+  <circle cx="540" cy="400" r="168" stroke="rgba(59,130,246,0.2)" stroke-width="1" fill="rgba(59,130,246,0.04)"/>
+  <circle cx="540" cy="400" r="155" stroke="rgba(59,130,246,0.1)" stroke-width="1" fill="none"/>
+
+  <!-- ICON: Question mark — arc + stem + dot -->
+  <!-- Top arc of ? -->
+  <path d="M 468,318 Q 456,256 540,248 Q 624,240 636,308 Q 648,360 592,390 Q 558,412 554,444"
+    stroke="#3b82f6" stroke-width="14" fill="none" stroke-linecap="round"/>
+  <!-- Stem gap then dot -->
+  <line x1="554" y1="466" x2="554" y2="476" stroke="#3b82f6" stroke-width="14" stroke-linecap="round"/>
+  <!-- Dot -->
+  <circle cx="554" cy="506" r="14" fill="#3b82f6"/>
+
+  <line x1="430" y1="612" x2="540" y2="612" stroke="#3b82f6" stroke-width="1.5" opacity="0.9"/>
+  <line x1="540" y1="612" x2="650" y2="612" stroke="rgba(59,130,246,0.35)" stroke-width="1"/>
+
+  <text x="540" y="678"
+    font-family="Georgia, 'Times New Roman', serif"
+    font-size="66"
+    fill="#edf2ff"
+    text-anchor="middle"
+    letter-spacing="8"
+    font-weight="300">&#x44;&#xDA;VIDAS</text>
+
+  <text x="540" y="756"
+    font-family="Arial, Helvetica, sans-serif"
+    font-size="23"
+    fill="rgba(59,130,246,0.65)"
+    text-anchor="middle"
+    letter-spacing="7">CARRARA ALUMIGLASS</text>
+
+  <line x1="200" y1="940" x2="880" y2="940" stroke="rgba(59,130,246,0.1)" stroke-width="1"/>
+  <text x="540" y="978"
+    font-family="Arial, Helvetica, sans-serif"
+    font-size="20"
+    fill="rgba(58,92,126,0.5)"
+    text-anchor="middle"
+    letter-spacing="4">@carraraalumiglass</text>
+</svg>

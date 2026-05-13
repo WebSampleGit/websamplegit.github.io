@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  CARTÃO DE VISITA — FRENTE
+  Dimensões finais: 90 × 50 mm
+  Com sangria (3mm): 96 × 56 mm
+  Exportar para PDF em 300 DPI antes de enviar à gráfica
+  Cores em RGB — solicitar conversão CMYK à gráfica se necessário
+-->
+<svg xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     viewBox="0 0 1050 600" width="1050" height="600">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%"   stop-color="#030609"/>
+      <stop offset="55%"  stop-color="#060d1c"/>
+      <stop offset="100%" stop-color="#0a1628"/>
+    </linearGradient>
+    <pattern id="grid" width="42" height="42" patternUnits="userSpaceOnUse">
+      <path d="M 42 0 L 0 0 0 42" fill="none" stroke="rgba(59,130,246,0.055)" stroke-width="0.6"/>
+    </pattern>
+    <radialGradient id="glowL" cx="18%" cy="50%" r="45%">
+      <stop offset="0%" stop-color="rgba(59,130,246,0.1)"/>
+      <stop offset="100%" stop-color="rgba(59,130,246,0)"/>
+    </radialGradient>
+    <!-- Sangria guide clip -->
+    <clipPath id="card">
+      <rect width="1050" height="600" rx="0"/>
+    </clipPath>
+  </defs>
+
+  <g clip-path="url(#card)">
+    <!-- ── BACKGROUND ── -->
+    <rect width="1050" height="600" fill="url(#bgGrad)"/>
+    <rect width="1050" height="600" fill="url(#grid)"/>
+    <rect width="1050" height="600" fill="url(#glowL)"/>
+
+    <!-- ── SANGRIA / SAFE-ZONE GUIDES (remover antes de imprimir) ── -->
+    <!-- Sangria externa: 36px = 3mm | Área segura: 72px = 6mm -->
+
+    <!-- ── DECORATIVE VERTICAL STRIPE (left accent) ── -->
+    <rect x="0" y="0" width="6" height="600" fill="#3b82f6" opacity="0.7"/>
+
+    <!-- ── LOGO AREA ── -->
+    <image href="../imgs/myLogo.png"
+           x="50" y="102" height="228" width="280"
+           preserveAspectRatio="xMidYMid meet"/>
+
+    <!-- ── VERTICAL DIVIDER ── -->
+    <line x1="376" y1="72" x2="376" y2="492"
+          stroke="rgba(59,130,246,0.2)" stroke-width="1"/>
+    <circle cx="376" cy="282" r="3" fill="#3b82f6" opacity="0.45"/>
+
+    <!-- ── EYEBROW ── -->
+    <line x1="402" y1="126" x2="430" y2="126"
+          stroke="#3b82f6" stroke-width="1.5" opacity="0.8"/>
+    <text x="440" y="132"
+      font-family="Arial, Helvetica, sans-serif"
+      font-size="17" fill="rgba(59,130,246,0.75)"
+      letter-spacing="6">ESQUADRIAS DE ALUMÍNIO</text>
+
+    <!-- ── COMPANY NAME — CARRARA ── -->
+    <text x="400" y="262"
+      font-family="Georgia, 'Times New Roman', serif"
+      font-size="112" fill="#edf2ff"
+      letter-spacing="3" font-weight="300">CARRARA</text>
+
+    <!-- ── COMPANY NAME — ALUMIGLASS ── -->
+    <text x="402" y="344"
+      font-family="Georgia, 'Times New Roman', serif"
+      font-size="68" fill="#7aabda"
+      letter-spacing="7" font-weight="300">ALUMIGLASS</text>
+
+    <!-- ── ACCENT LINE ── -->
+    <line x1="402" y1="374" x2="520" y2="374"
+          stroke="#3b82f6" stroke-width="1.5" opacity="0.85"/>
+    <line x1="520" y1="374" x2="840" y2="374"
+          stroke="rgba(59,130,246,0.2)" stroke-width="1"/>
+
+    <!-- ── TAGLINE ── -->
+    <text x="402" y="412"
+      font-family="Arial, Helvetica, sans-serif"
+      font-size="19" fill="rgba(122,171,208,0.6)"
+      letter-spacing="4.5">Portas · Janelas · Sacadas · Manutenção</text>
+
+    <!-- ── LOCATION ── -->
+    <text x="402" y="450"
+      font-family="Arial, Helvetica, sans-serif"
+      font-size="17" fill="rgba(58,92,126,0.85)"
+      letter-spacing="4">São Paulo · SP</text>
+
+    <!-- ── BOTTOM SEPARATOR ── -->
+    <line x1="36" y1="495" x2="1014" y2="495"
+          stroke="rgba(59,130,246,0.14)" stroke-width="1"/>
+
+    <!-- ── WEBSITE ── -->
+    <text x="525" y="542"
+      font-family="Arial, Helvetica, sans-serif"
+      font-size="20" fill="rgba(59,92,126,0.7)"
+      text-anchor="middle" letter-spacing="3.5">www.carraraalumiglass.com.br</text>
+
+    <!-- ── CORNER BRACKETS ── -->
+    <path d="M 52,76 L 52,46 L 82,46"   stroke="rgba(59,130,246,0.35)" stroke-width="1.5" fill="none"/>
+    <path d="M 968,46 L 998,46 L 998,76" stroke="rgba(59,130,246,0.35)" stroke-width="1.5" fill="none"/>
+    <path d="M 52,524 L 52,554 L 82,554" stroke="rgba(59,130,246,0.35)" stroke-width="1.5" fill="none"/>
+    <path d="M 968,554 L 998,554 L 998,524" stroke="rgba(59,130,246,0.35)" stroke-width="1.5" fill="none"/>
+
+    <!-- ── SUBTLE HORIZONTAL LINES (decorative) ── -->
+    <line x1="36" y1="66" x2="1014" y2="66"
+          stroke="rgba(59,130,246,0.07)" stroke-width="0.5"/>
+    <line x1="36" y1="564" x2="1014" y2="564"
+          stroke="rgba(59,130,246,0.07)" stroke-width="0.5"/>
+  </g>
+</svg>
